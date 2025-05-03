@@ -1,0 +1,80 @@
+.footer {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-top: 1px solid #ddd;
+    margin-top: auto;
+}
+
+.footer-navs {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.footer-nav h4 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.footer-nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-nav li {
+    margin-bottom: 5px;
+}
+
+.footer-nav a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.footer-nav a:hover {
+    text-decoration: underline;
+}
+
+.footer-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-company {
+    display: flex;
+    align-items: center;
+}
+
+.footer-company p {
+    margin-right: 10px;
+}
+
+.footer-logo {
+    width: 20px;
+    height: 20px;
+}
+
+.footer-social {
+    text-align: right;
+}
+
+.social-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.social-icon {
+    width: 20px;
+    height: 20px;
+    background-color: #ddd;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.social-icon:hover {
+    background-color: #bbb;
+}
