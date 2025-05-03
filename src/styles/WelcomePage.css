@@ -1,0 +1,47 @@
+*,
+::after,
+::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+
+/* Help section styles */
+#help-section {
+  margin-top: 100px;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+/* Fullscreen container styles */
+.fullscreen-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100dvh;
+  background-color: #f0f0f0;
+  overflow: hidden;
+}
+
+.fullscreen-container button {
+  margin: 10px;
+  padding: 15px 30px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.fullscreen-container button:hover {
+  background-color: #0056b3;
+}
