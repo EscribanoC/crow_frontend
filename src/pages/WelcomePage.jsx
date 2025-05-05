@@ -7,7 +7,8 @@ function WelcomePage() {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    fetch('http://localhost:8080/api/v1/crows')
+    const API_URL = import.meta.env.VITE_API_URL;
+    fetch(`${API_URL}/api/v1/crows`)
       .then((response) => response.json())
       .then((data) => setCrows(data))
       .catch((error) => console.error('Error fetching crows:', error));
