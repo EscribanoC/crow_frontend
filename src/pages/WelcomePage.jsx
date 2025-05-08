@@ -8,7 +8,7 @@ function WelcomePage() {
 
   useEffect(() => {
     const API_URL = import.meta.env.VITE_API_URL;
-    fetch('http://localhost:8080/api/v1/crows')
+    fetch('http://20.39.234.26:8080/api/v1/crows')
       .then((response) => response.json())
       .then((data) => setCrows(data))
       .catch((error) => console.error('Error fetching crows:', error));
