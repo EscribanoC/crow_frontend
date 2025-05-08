@@ -13,7 +13,7 @@ function LoginModal({ toggleModal, redirectTo = null}) {
     const password = formData.get('password');
     const API_URL = import.meta.env.VITE_API_URL;
 
-    fetch('localhost:8080/api/v1/auth/authenticate', {
+    fetch('http://localhost:8080/api/v1/auth/authenticate', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
