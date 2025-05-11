@@ -3,12 +3,25 @@
     padding: 20px;
     border-top: 1px solid #ddd;
     margin-top: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-content {
+    width: clamp(50%, 100%, 60%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .footer-navs {
+    width: 100%;
     display: flex;
-    justify-content: space-between;
     margin-bottom: 20px;
+    justify-content: center;
+    gap: 100px;
 }
 
 .footer-nav h4 {
@@ -35,6 +48,7 @@
 }
 
 .footer-info {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;

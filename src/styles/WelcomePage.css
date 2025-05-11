@@ -6,42 +6,175 @@
   padding: 0;
 }
 
-body::-webkit-scrollbar {
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none; 
+}
+
+html::-webkit-scrollbar {
   display: none;
 }
 
-
-/* Help section styles */
-#help-section {
-  margin-top: 100px;
-  padding: 20px;
-  background-color: #f9f9f9;
+.welcome-page {
+  background: linear-gradient(to bottom, var(--color-1), var(--color-3), var(--color-3));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* Fullscreen container styles */
-.fullscreen-container {
+.clouds {
+  position: absolute;
+  width: 100%;
+  min-height: 100vh;
+
+  img {
+    width: 550px;
+    object-fit: cover;
+    position: absolute;
+  }
+
+  .cloud-1 {
+    right: -230px;
+  }
+
+  .cloud-2 {
+    left: -100px;
+    bottom: -100px;
+  }
+}
+
+.welcome-page-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 75%;
   height: 100dvh;
-  background-color: #f0f0f0;
+  overflow: hidden;
+  position: relative;
+
+  .welcome-page-screen-1 {
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+    height: 70%;
+
+    .welcome-page-screen-1-content {
+      display: flex;
+      flex-direction: column;
+      z-index: 1;
+
+      .logo-welcome-big {
+        width: 30%;
+      }
+
+      .welcome-page-screen-1-options {
+        display: flex;
+        gap: 20px;
+
+        .welcome-page-screen-1-options-option {
+          display: flex;
+          width: 30%;
+          gap: 10px;
+          flex-direction: column;
+          background-color: var(--color-4);
+          padding: 20px 15px;
+          padding-top: 20px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+          h1 {
+            font-weight: 600;
+            font-size: 24px;
+          }
+
+          p {
+            font-weight: 200;
+            font-size: 16px;
+          }
+        }
+
+        button {
+          width: 150px;
+          height: 40px;
+          font-size: 18px;
+          border: none;
+          border-radius: 10px;
+          background-color: var(--color-1);
+          color: white;
+          cursor: pointer;
+          transition: background-color 0.3s;
+          font-weight: 500;
+        }
+
+        .welcome-page-screen-1-options-option-help {
+          border-radius: 70px 20px;
+          justify-content: space-between;
+          align-items: start;
+
+          div {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            text-align: end;
+            align-items: end;
+          }
+        }
+
+        .welcome-page-screen-1-options-option-create {
+          border-radius: 20px 70px;
+          justify-content: space-between;
+          align-items: end;
+
+          div {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            text-align: start;
+          }
+        }
+      }
+    }
+  }
+
+  .welcome-page-screen-1-3dComponents {
+    width: 50%;
+    z-index: 0;
+    position: absolute;
+    right: 0;
+    top: 20%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+.welcome-page-screen-1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
   overflow: hidden;
 }
 
-.fullscreen-container button {
-  margin: 10px;
-  padding: 15px 30px;
-  font-size: 18px;
-  border: none;
-  border-radius: 5px;
-  background-color: #007bff;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s;
+
+.welcome-page-content button:hover {
+  background-color: var(--color-1-button-hover);
 }
 
-.fullscreen-container button:hover {
-  background-color: #0056b3;
+.social-media-icons{
+  bottom: -100px;
+
+  img{
+    color: whites;
+    width: 30px;
+  }
+}
+
+#welcome-page-crows {
+  margin-top: 1000px;
+  padding: 20px;
 }
