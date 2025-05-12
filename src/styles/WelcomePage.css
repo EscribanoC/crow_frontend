@@ -8,15 +8,22 @@
 
 html {
   scrollbar-width: none;
-  -ms-overflow-style: none; 
+  -ms-overflow-style: none;
 }
 
 html::-webkit-scrollbar {
   display: none;
 }
 
+html {
+  background: linear-gradient(to bottom, var(--color-1), var(--color-3));
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .welcome-page {
-  background: linear-gradient(to bottom, var(--color-1), var(--color-3), var(--color-3));
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,21 +34,79 @@ html::-webkit-scrollbar {
   width: 100%;
   min-height: 100vh;
 
+  .cloud-1 {
+    right: -230px;
+    animation: moveCloud1 10s ease-in-out infinite;
+    -webkit-animation: moveCloud1 10s ease-in-out infinite;
+  }
+
+  .cloud-2 {
+    left: -100px;
+    bottom: -100px;
+    animation: moveCloud2 12s ease-in-out infinite;
+    -webkit-animation: moveCloud2 12s ease-in-out infinite;
+  }
+
   img {
     width: 550px;
     object-fit: cover;
     position: absolute;
   }
 
-  .cloud-1 {
-    right: -230px;
+}
+
+@keyframes moveCloud1 {
+  0% {
+    transform: translateX(0px) translateY(0);
+    -webkit-transform: translateX(0px) translateY(0);
+    -moz-transform: translateX(0px) translateY(0);
+    -ms-transform: translateX(0px) translateY(0);
+    -o-transform: translateX(0px) translateY(0);
   }
 
-  .cloud-2 {
-    left: -100px;
-    bottom: -100px;
+  50% {
+    transform: translateX(40px);
+    -webkit-transform: translateX(40px);
+    -moz-transform: translateX(40px);
+    -ms-transform: translateX(40px);
+    -o-transform: translateX(40px);
+  }
+
+  100% {
+    transform: translateX(0px) translateY(0);
+    -webkit-transform: translateX(0px) translateY(0);
+    -moz-transform: translateX(0px) translateY(0);
+    -ms-transform: translateX(0px) translateY(0);
+    -o-transform: translateX(0px) translateY(0);
   }
 }
+
+@keyframes moveCloud2 {
+  0% {
+    transform: translateX(0px) translateY(0);
+    -webkit-transform: translateX(0px) translateY(0);
+    -moz-transform: translateX(0px) translateY(0);
+    -ms-transform: translateX(0px) translateY(0);
+    -o-transform: translateX(0px) translateY(0);
+  }
+
+  50% {
+    transform: translateX(50px) translateY(-20px);
+    -webkit-transform: translateX(50px) translateY(-20px);
+    -moz-transform: translateX(50px) translateY(-20px);
+    -ms-transform: translateX(50px) translateY(-20px);
+    -o-transform: translateX(50px) translateY(-20px);
+  }
+
+  100% {
+    transform: translateX(0px) translateY(0);
+    -webkit-transform: translateX(0px) translateY(0);
+    -moz-transform: translateX(0px) translateY(0);
+    -ms-transform: translateX(0px) translateY(0);
+    -o-transform: translateX(0px) translateY(0);
+  }
+}
+
 
 .welcome-page-content {
   display: flex;
@@ -84,7 +149,7 @@ html::-webkit-scrollbar {
           box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
           h1 {
-            font-weight: 600;
+            font-weight: 700;
             font-size: 24px;
           }
 
@@ -165,16 +230,66 @@ html::-webkit-scrollbar {
   background-color: var(--color-1-button-hover);
 }
 
-.social-media-icons{
-  bottom: -100px;
+.social-media-icons {
+  display: flex;
+  gap: 10px;
+  position: absolute;
+  bottom: 50px;
 
-  img{
-    color: whites;
+  .social-media-icon {
+    color: white;
     width: 30px;
+    height: 30px;
   }
 }
 
 #welcome-page-crows {
   margin-top: 1000px;
   padding: 20px;
+}
+
+.animate-out {
+  animation: translateOut 1s ease-in-out forwards;
+  -webkit-animation: translateOut 1s ease-in-out forwards;
+}
+
+.animate-out-modal {
+  animation: translateOut 1s ease-in-out forwards;
+  -webkit-animation: translateOut 1s ease-in-out forwards;
+}
+
+@keyframes translateOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+.animate-in {
+  animation: fadeIn 1s 1s ease-in-out forwards;
+  -webkit-animation: fadeIn 1s 1s ease-in-out forwards;
+  opacity: 0;
+}
+
+.animate-in-modal {
+  animation: fadeIn 1s ease-in-out forwards;
+  -webkit-animation: fadeIn 1s ease-in-out forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/components/LoginModal.css';
 
-function LoginModal({ toggleModal, redirectTo = null }) {
+function LoginModal({ toggleModal, redirectTo = null , animateContent = false}) {
   const navigate = useNavigate();
   const [isRegistering, setIsRegistering] = useState(false);
   const [generos, setGeneros] = useState([]);
@@ -103,7 +103,7 @@ function LoginModal({ toggleModal, redirectTo = null }) {
   };
 
   return (
-    <div className="modal">
+    <div className={`modal ${animateContent ? 'animate-in-modal' : 'animate-out-modal'}`}>
       <div className="modal-content">
         {isRegistering ? (
           <>

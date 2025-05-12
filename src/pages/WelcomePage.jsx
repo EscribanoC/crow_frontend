@@ -2,13 +2,19 @@ import React, { useState, useEffect } from 'react';
 import '../styles/WelcomePage.css';
 import LoginModal from '../components/LoginModal';
 import {scrollToElement} from '../js/smooth-scroll';
+import InstagramIcon from '../assets/svg/instagram.svg?react';
+import FacebookIcon from '../assets/svg/facebook.svg?react';
+import YoutubeIcon from '../assets/svg/youtube.svg?react';
+import XIcon from '../assets/svg/x.svg?react';
 
 function WelcomePage() {
   const [crows, setCrows] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [animateContent, setAnimateContent] = useState(false);
 
   useEffect(() => {
     const API_URL = import.meta.env.VITE_API_URL;
+    console.log(InstagramIcon)
 
     fetch(`${API_URL}api/v1/crows`)
       .then((response) => response.json())
@@ -50,7 +56,11 @@ function WelcomePage() {
   };
 
   const toggleModal = () => {
-    setShowModal(!showModal);
+    animateContent?setAnimateContent(false):setAnimateContent(true);
+    setTimeout(() => {
+      showModal?setShowModal(false):setShowModal(true); 
+    }, 1000);
+    
   };
 
   return (
@@ -61,7 +71,7 @@ function WelcomePage() {
         <img src="./image/cloud2.png" alt="nube2" className="cloud-2" />
       </div>
 
-      <div className="welcome-page-content">
+      <div className={`welcome-page-content ${animateContent ? 'animate-out' : 'animate-in'}`}>
         <div className="welcome-page-screen-1">
           <div className="welcome-page-screen-1-content">
             <img src="./image/Logo1.png" alt="Logo" className="logo-welcome-big" />
@@ -88,10 +98,18 @@ function WelcomePage() {
           </div>
         </div>
         <div className="social-media-icons">
-          <img src="./public/svg/instagram.svg" alt="Instagram" className="social-media-icon" />
-          <img src="./public/svg/x.svg" alt="Twitter" className="social-media-icon" />
-          <img src="./public/svg/facebook.svg" alt="Facebook" className="social-media-icon" />
-          <img src="./public/svg/youtube.svg" alt="YouTube" className="social-media-icon" />
+          <a href='https://www.x.com' target="_blank" rel="noopener noreferrer">
+          <XIcon className="social-media-icon" />
+          </a>
+          <a href='https://www.instagram.com' target="_blank" rel="noopener noreferrer">
+          <InstagramIcon className="social-media-icon" />
+          </a>
+          <a href='https://www.youtube.com' target="_blank" rel="noopener noreferrer">
+          <YoutubeIcon className="social-media-icon" />
+          </a>
+          <a href='https://www.facebook.com' target="_blank" rel="noopener noreferrer">
+          <FacebookIcon className="social-media-icon" />
+          </a>
         </div>
       </div>
 
@@ -105,7 +123,7 @@ function WelcomePage() {
       </div>
 
       {showModal && (
-        <LoginModal toggleModal={toggleModal} redirectTo="/home" />
+        <LoginModal toggleModal={toggleModal} redirectTo="/home" animateContent={animateContent}/>
       )}
     </div>
   );
