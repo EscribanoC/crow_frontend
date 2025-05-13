@@ -2,20 +2,128 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100dvw;
+    height: 100dvh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 2;
+    gap: 20px;
+}
+
+.modal-header {
+    width: 150px;
+
+    .logo-welcome-small {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 }
 
 .modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
+    background: var(--color-4);
+    border-radius: 15px;
     text-align: left;
-    width: 300px;
+    width: 370px;
+    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+    transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 20px;
+    font-weight: 300;
+
+    .boton-submit-modal {
+        width: 100%;
+        height: 40px;
+        border-radius: 3px;
+    }
+
+    .link-button {
+        border: none;
+        background: none;
+        color: var(--color-1);
+        font-weight: 700;
+        cursor: pointer;
+        font-weight: 700;
+        margin-left: 6px;
+    }
+
+    .link-button:hover {
+        color: var(--color-1-button-hover);
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .alternative-login {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: end;
+        gap: 10px;
+        font-size: 15px;
+        font-weight: 200;
+        margin-top: 20px;
+    }
+
+}
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 30px;
+
+    form {
+        width: 100%;
+    }
+
+    .form-input {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+
+        input,
+        select {
+            width: 100%;
+            height: 35px;
+            border-radius: 3px;
+            border: none;
+            font-size: 15px;
+            padding: 5px;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border: 1px solid var(--color-1);
+            box-shadow: 0 0 2px var(--color-1);
+        }
+    }
+
+
+}
+
+.image-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Clases con animaciones */
+
+.modal-content.login,
+.modal-content.to-login {
+    height: 330px;
+}
+
+.modal-content.register,
+.modal-content.to-register {
+    height: 660px;
 }
 
 .modal-content h2 {
@@ -28,6 +136,38 @@
     gap: 10px;
 }
 
-.modal-content button {
-    margin-top: 10px;
+
+.form-wrapper {
+    opacity: 1;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    transition: opacity 0.4s;
+    -webkit-transition: opacity 0.4s;
+    -moz-transition: opacity 0.4s;
+    -ms-transition: opacity 0.4s;
+    -o-transition: opacity 0.4s;
+}
+
+.fade-in {
+    opacity: 1;
+    z-index: 2;
+    pointer-events: auto;
+    transition: opacity 0.4s;
+    -webkit-transition: opacity 0.4s;
+    -moz-transition: opacity 0.4s;
+    -ms-transition: opacity 0.4s;
+    -o-transition: opacity 0.4s;
+}
+
+.fade-out {
+    opacity: 0;
+    z-index: 1;
+    pointer-events: none;
+    transition: opacity 0.4s;
+    -webkit-transition: opacity 0.4s;
+    -moz-transition: opacity 0.4s;
+    -ms-transition: opacity 0.4s;
+    -o-transition: opacity 0.4s;
 }

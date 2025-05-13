@@ -1,0 +1,15 @@
+.welcome-button {
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--color-1);
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 20px;
+
+    &:hover {
+        background-color: var(--color-1-button-hover);
+        transition: background-color 0.3s ease-in-out;
+    }
+}

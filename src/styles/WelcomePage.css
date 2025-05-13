@@ -162,14 +162,6 @@ html {
         button {
           width: 150px;
           height: 40px;
-          font-size: 18px;
-          border: none;
-          border-radius: 10px;
-          background-color: var(--color-1);
-          color: white;
-          cursor: pointer;
-          transition: background-color 0.3s;
-          font-weight: 500;
         }
 
         .welcome-page-screen-1-options-option-help {
@@ -226,9 +218,6 @@ html {
 }
 
 
-.welcome-page-content button:hover {
-  background-color: var(--color-1-button-hover);
-}
 
 .social-media-icons {
   display: flex;
