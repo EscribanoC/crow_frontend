@@ -1,12 +1,13 @@
 .footer {
-    background-color: #f8f9fa;
-    padding: 20px;
-    border-top: 1px solid #ddd;
+    background-color: var(--color-footer);
+    padding-top: 50px;
+    padding-bottom: 20px;
     margin-top: auto;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: white;
 }
 
 .footer-content {
@@ -16,6 +17,7 @@
     align-items: center;
 }
 
+
 .footer-navs {
     width: 100%;
     display: flex;
@@ -24,14 +26,27 @@
     gap: 100px;
 }
 
+.footer-separator {
+    content: '';
+    width: 400px;
+    height: 1px;
+    background-color: #ddd;
+    margin-top: 30px;
+}
+
+
 .footer-nav h4 {
     margin-bottom: 10px;
     font-size: 1.2rem;
+    font-weight: 600;
 }
 
 .footer-nav ul {
     list-style: none;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .footer-nav li {
@@ -40,7 +55,8 @@
 
 .footer-nav a {
     text-decoration: none;
-    color: #007bff;
+    color: white;
+    font-weight: 100;
 }
 
 .footer-nav a:hover {
@@ -56,20 +72,23 @@
 
 .footer-company {
     display: flex;
-    align-items: center;
+    align-items: end;
+    gap: 10px;
 }
 
-.footer-company p {
-    margin-right: 10px;
-}
 
 .footer-logo {
-    width: 20px;
-    height: 20px;
+    width: 40px;
+    height: 40px;
 }
 
 .footer-social {
+    display: flex;
     text-align: right;
+    gap: 20px;
+    align-items: end;
+    font-size: 15px;
+    font-weight: 100;
 }
 
 .social-icons {
@@ -87,8 +106,4 @@
     border-radius: 50%;
     font-size: 0.8rem;
     cursor: pointer;
-}
-
-.social-icon:hover {
-    background-color: #bbb;
 }

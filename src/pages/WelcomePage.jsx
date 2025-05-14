@@ -72,8 +72,8 @@ function WelcomePage() {
   return (
     <div className="App welcome-page">
       <div className="clouds">
-        <img src="./image/cloud1.png" alt="nube1" className="cloud-1" />
-        <img src="./image/cloud2.png" alt="nube2" className="cloud-2" />
+        <img src="./images/cloud1.png" alt="nube1" className="cloud-1" />
+        <img src="./images/cloud2.png" alt="nube2" className="cloud-2" />
       </div>
 
       <div
@@ -84,7 +84,7 @@ function WelcomePage() {
         <div className="welcome-page-screen-1">
           <div className="welcome-page-screen-1-content">
             <img
-              src="./image/Logo1.png"
+              src="./images/Logo1.png"
               alt="Logo"
               className="logo-welcome-big"
             />
@@ -120,7 +120,7 @@ function WelcomePage() {
           </div>
           <div className="welcome-page-screen-1-3dComponents">
             <img
-              src="./image/3dcomponents.png"
+              src="./images/3dcomponents.png"
               alt="3D Components"
               className="3dComponents"
             />

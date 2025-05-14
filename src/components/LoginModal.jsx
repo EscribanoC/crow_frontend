@@ -142,7 +142,7 @@ function LoginModal({
     >
       <div className="modal-header">
         <img
-          src="./image/Logo1.png"
+          src="./images/Logo1.png"
           alt="Logo"
           className="logo-welcome-small"
         />

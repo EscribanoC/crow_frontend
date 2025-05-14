@@ -9,7 +9,7 @@ const ProfileImageUploader = () => {
 
   const handleImageChange = (e) => {
     const file = e.target.files?.[0];
-    if (file && file.type.startsWith("image/")) {
+    if (file && file.type.startsWith("images/")) {
       const reader = new FileReader();
       reader.onload = () => setImage(reader.result);
       reader.readAsDataURL(file);
@@ -20,7 +20,7 @@ const ProfileImageUploader = () => {
     e.preventDefault();
     setDragActive(false);
     const file = e.dataTransfer.files?.[0];
-    if (file && file.type.startsWith("image/")) {
+    if (file && file.type.startsWith("images/")) {
       const reader = new FileReader();
       reader.onload = () => setImage(reader.result);
       reader.readAsDataURL(file);
@@ -61,7 +61,7 @@ const ProfileImageUploader = () => {
         )}
         <input
           type="file"
-          accept="image/*"
+          accept="images/*"
           name="avatarRegister"
           ref={inputRef}
           onChange={handleImageChange}

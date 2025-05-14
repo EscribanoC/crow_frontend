@@ -3,6 +3,12 @@
     --color-2: #C68EFD;
     --color-3: #E9A5F1;
     --color-4: #FED2E2;
+    --color-5: #352F77;
+
+    --color-header: #1D1948;
+    --color-separator: #4C44AC;
+    --color-footer: #1D1948;
 
     --color-1-button-hover: #7268d8;
+    --color-3-button-hover: #cb8ed3;
 }
