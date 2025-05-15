@@ -232,7 +232,7 @@ html {
   }
 }
 
-#welcome-page-crows {
+.featured-crows-container-welcome {
   margin-top: 1000px;
   padding: 20px;
 }

@@ -1,29 +1,27 @@
 import React, { useState, useEffect } from "react";
+import LoginModal from "../components/LoginModal";
+import FeaturedCrows from "../components/FeaturedCrows";
+
+import { scrollToElement } from "../js/smooth-scroll";
+
 import "../styles/WelcomePage.css";
 import "../styles/components/welcomeButton.css";
-import LoginModal from "../components/LoginModal";
-import { scrollToElement } from "../js/smooth-scroll";
+
 import InstagramIcon from "../assets/svg/instagram.svg?react";
 import FacebookIcon from "../assets/svg/facebook.svg?react";
 import YoutubeIcon from "../assets/svg/youtube.svg?react";
 import XIcon from "../assets/svg/x.svg?react";
 
 function WelcomePage() {
-  const [crows, setCrows] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [animateContent, setAnimateContent] = useState(false);
   const [isModalToggling, setIsModalToggling] = useState(false);
 
   useEffect(() => {
-    const API_URL = import.meta.env.VITE_API_URL;
-
-    fetch(`${API_URL}api/v1/crows`)
-      .then((response) => response.json())
-      .then((data) => setCrows(data))
-      .catch((error) => console.error("Error fetching crows:", error));
-
     const handleWheel = (event) => {
-      const helpSection = document.getElementById("welcome-page-crows");
+      const helpSection = document.getElementById(
+        "featured-crows-container-welcome"
+      );
       const fullscreenContainer = document.querySelector(
         ".welcome-page-content"
       );
@@ -54,7 +52,9 @@ function WelcomePage() {
   }, []);
 
   const handleScrollToHelp = () => {
-    const pageCrows = document.getElementById("welcome-page-crows");
+    const pageCrows = document.getElementById(
+      "featured-crows-container-welcome"
+    );
     scrollToElement(pageCrows, 1500);
   };
 
@@ -154,13 +154,11 @@ function WelcomePage() {
         </div>
       </div>
 
-      <div id="welcome-page-crows" className="welcome-page-content">
-        {crows.map((crow, index) => (
-          <div key={index} className="crow-item">
-            <h3>{crow.titulo}</h3>
-            <p>{crow.descripcion}</p>
-          </div>
-        ))}
+      <div
+        id="featured-crows-container-welcome"
+        className="welcome-page-content featured-crows-container-welcome"
+      >
+        <FeaturedCrows />
       </div>
 
       {showModal && (

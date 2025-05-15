@@ -7,9 +7,9 @@ import Carousel from "../components/Carousel";
 
 const HomePage = () => {
   const images = [
-    "../../public/images/carousel1.png",
-    "../../public/images/carousel2.png",
-    "../../public/images/carousel3.png",
+    "./images/carousel1.png",
+    "./images/carousel2.png",
+    "./images/carousel3.png",
   ];
 
   return (
@@ -17,9 +17,11 @@ const HomePage = () => {
       <div className="main-template-content">
         <Header />
         <main className="main-container">
-          <div className="carrousel-container">
+          <div className="carrousel-container-home">
             <Carousel images={images} interval={5000} />
           </div>
+
+          <div className="featured-crows-container-home"></div>
         </main>
       </div>
       <Footer />
