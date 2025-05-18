@@ -5,3 +5,11 @@
   font-style: normal;
   font-display: swap;
 }
+
+@font-face {
+  font-family: 'Jost';
+  src: url('../assets/fonts/Jost/Jost-Variable.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}

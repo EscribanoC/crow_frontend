@@ -12,13 +12,13 @@ function LoginModal({
   const navigate = useNavigate();
   const [isRegistering, setIsRegistering] = useState(false);
   const [generos, setGeneros] = useState([]);
-  const [formTransition, setFormTransition] = useState(""); // '' | 'to-register' | 'to-login'
+  const [formTransition, setFormTransition] = useState("");
 
   const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     if (isRegistering) {
-      fetch(`${API_URL}api/v1/enums/generos`)
+      fetch(`${API_URL}enums/generos`)
         .then((response) => {
           if (!response.ok) {
             throw new Error("Failed to fetch generos");
@@ -37,7 +37,7 @@ function LoginModal({
     const email = formData.get("email");
     const password = formData.get("password");
 
-    fetch(`${API_URL}api/v1/auth/authenticate`, {
+    fetch(`${API_URL}auth/authenticate`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -89,7 +89,7 @@ function LoginModal({
     payload.append("password", password);
     payload.append("genero", genero);
 
-    fetch(`${API_URL}api/v1/auth/register`, {
+    fetch(`${API_URL}auth/register`, {
       method: "POST",
       body: payload,
     })
@@ -104,7 +104,7 @@ function LoginModal({
         setIsRegistering(false);
       })
       .catch((error) => {
-        console.error("Error during registration:", payload);
+        console.error("Error during registration:", error);
         alert("Registration failed. Please try again.");
       });
   };
@@ -138,7 +138,7 @@ function LoginModal({
       className={`modal ${
         animateContent ? "animate-in-modal" : "animate-out-modal"
       }`}
-      onClick={handleBackdropClick}
+      onMouseDown={handleBackdropClick}
     >
       <div className="modal-header">
         <img

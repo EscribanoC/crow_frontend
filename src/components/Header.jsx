@@ -2,8 +2,10 @@ import React from "react";
 import "../styles/components/Header.css";
 import { useState, useEffect } from "react";
 import { fetchCurrentUser } from "../js/userService";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
   const [user, setUser] = useState(null);
 
   const API_URL = import.meta.env.VITE_API_URL;
@@ -27,11 +29,18 @@ const Header = () => {
         </ul>
       </nav>
       <div className="logoHeader">
-        <img src="./images/Logo2.png"></img>
-        <p className="logo">Crow</p>
+        <div className="logoIcon" onClick={() => navigate("/home")}>
+          <img src="./images/Logo2.png"></img>
+          <p className="logo">Crow</p>
+        </div>
       </div>
       <div className="actions">
-        <button className="start-button">Empieza tu Crow</button>
+        <button
+          className="start-button"
+          onClick={() => navigate("/create-crow")}
+        >
+          Empieza tu Crow
+        </button>
         <button className="image-button">
           <img
             src="./images/Logo2.png"

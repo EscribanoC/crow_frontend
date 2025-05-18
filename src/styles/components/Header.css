@@ -37,8 +37,15 @@
     align-items: center;
     justify-content: center;
     flex: 1;
-    gap: 10px;
 
+    .logoIcon {
+        width: fit-content;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        cursor: pointer;
+    }
 
     img {
         width: 30px;

@@ -1,0 +1,50 @@
+.MuiAccordion-root {
+    border-radius: 20px !important;
+    margin-bottom: 16px;
+    box-shadow: none;
+    padding: 20px;
+    background-color: var(--color-1-transparent) !important;
+    color: white !important;
+    font-family: 'Jost', sans-serif !important;
+    font-style: normal !important;
+    width: 100%;
+}
+
+.MuiAccordion-root * {
+    font-family: 'Jost', sans-serif !important;
+    font-style: normal !important;
+    color: white !important;
+}
+
+.MuiAccordionSummary-root {
+    font-weight: bold;
+    border-radius: 20px;
+    color: white;
+
+    .MuiAccordionSummary-content {
+        display: flex !important;
+        justify-content: start !important;
+        align-items: center !important;
+        gap: 20px !important;
+
+        .accordion-number {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            border: 3px solid white;
+            font-size: 20px;
+        }
+    }
+}
+
+.MuiAccordionDetails-root {
+    padding: 16px;
+    border-radius: 20px;
+
+    >p {
+        color: white !important;
+    }
+}

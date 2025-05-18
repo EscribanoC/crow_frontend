@@ -1,0 +1,77 @@
+.create-crow-start-content-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+.form-create-crow {
+    width: 100%;
+}
+
+.button-crow-back {
+    background-color: var(--color-1) !important;
+    color: var(--color-5) !important;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none !important;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-crow-back:hover {
+    background-color: var(--color-1-button-hover) !important;
+}
+
+.button-crow-back:disabled {
+    background-color: var(--color-1-transparent) !important;
+    color: var(--color-5) !important;
+    cursor: not-allowed;
+}
+
+.button-crow-next {
+    background-color: var(--color-1) !important;
+    color: var(--color-5) !important;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none !important;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-crow-next:hover {
+    background-color: var(--color-1-button-hover) !important;
+}
+
+.button-crow-next:disabled {
+    background-color: var(--color-1-transparent) !important;
+    color: var(--color-5) !important;
+    cursor: not-allowed;
+}
+
+.button-crow-submit {
+    background-color: var(--color-3) !important;
+    color: var(--color-5) !important;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-crow-submit:hover {
+    background-color: var(--color-3-button-hover) !important;
+}
+
+.button-crow-submit:disabled {
+    background-color: var(--color-3-transparent) !important;
+    color: var(--color-5) !important;
+    cursor: not-allowed;
+}

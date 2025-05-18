@@ -1,0 +1,51 @@
+.crow {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+
+    .crow-image-container {
+        width: 100%;
+        height: 70%;
+        background-color: var(--color-2);
+        border-radius: 20px;
+    }
+
+    .crow-info {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+        border-radius: 20px;
+
+        .crow-title {
+            display: flex;
+            align-items: start;
+            gap: 10px;
+
+            .crow-user-icon {
+                border-radius: 100%;
+                width: 35px;
+                height: 35px;
+                background-color: var(--color-2);
+                overflow: hidden;
+            }
+
+            .crow-user-name {
+                width: 80%;
+
+                h3 {
+                    height: fit-content;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }
+        }
+    }
+
+}

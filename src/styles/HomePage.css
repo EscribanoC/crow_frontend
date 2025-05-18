@@ -1,39 +1,85 @@
-.home-page {
-    display: flex;
-    flex-direction: column;
-    min-height: 100dvh;
-}
-
-.main-container {
+.home-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    gap: 40px;
+    position: relative;
     width: 100%;
-    height: 1200px;
+    height: 700px;
+}
 
-    .carrousel-container-home {
-        display: flex;
-        position: relative;
+.carrousel-container-home::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('../../public/images/tileable-background-bubble.png');
+    background-blend-mode: luminosity;
+    background-size: 600px;
+    background-repeat: repeat;
+    background-position: center;
+    opacity: 0.18;
+}
+
+.carrousel-container-home::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: var(--color-separator);
+}
+
+.featured-crows-container-home {
+    height: 1000px;
+    position: relative;
+    z-index: 1;
+    padding-bottom: 80px;
+
+    .see-more-crows-button {
+        background-color: transparent;
+        border: 2px solid var(--color-1);
+        border-radius: 15px;
+        color: white;
+        font-size: 17px;
+        font-weight: 600;
+        cursor: pointer;
+        padding: 15px 30px;
+        font-family: 'Jost', sans-serif;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .see-more-crows-button:hover {
+        background-color: var(--color-1);
+        color: black;
+    }
+
+    .particles-container {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
-        height: 700px;
-    }
+        height: 100%;
+        z-index: -1;
 
-    .carrousel-container-home::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background-image: url('../../public/images/tileable-background-bubble.png');
-        background-blend-mode: luminosity;
-        background-size: 600px;
-        background-repeat: repeat;
-        background-position: center;
-        opacity: 0.18;
-    }
+        img {
+            position: absolute;
+        }
 
-    .carrousel-container-home::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background-color: var(--color-separator);
+        .particles1 {
+            top: 0;
+            left: 0;
+            width: 30%;
+        }
+
+        .particles2 {
+            top: 0;
+            right: 0;
+            width: 45%;
+        }
+
+        .particles3 {
+            bottom: 0;
+            left: 0;
+            width: 95%;
+        }
     }
 }
