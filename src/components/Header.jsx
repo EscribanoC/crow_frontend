@@ -24,7 +24,9 @@ const Header = () => {
     <header className="header">
       <nav className="nav">
         <ul className="nav-list">
-          <li className="nav-item">Descubre</li>
+          <li className="nav-item" onClick={() => navigate("/discover")}>
+            Descubre
+          </li>
           <li className="nav-item">Para principiantes</li>
         </ul>
       </nav>

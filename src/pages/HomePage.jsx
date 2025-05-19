@@ -32,7 +32,7 @@ const HomePage = () => {
             <div>
               <button
                 className="see-more-crows-button"
-                onClick={() => navigate("/")}
+                onClick={() => navigate("/discover")}
               >
                 Descubre más Crows
               </button>

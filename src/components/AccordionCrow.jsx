@@ -30,10 +30,27 @@ export default function AccordionCrow() {
     categoria: "",
     imagenes: [],
     videoPromocional: null,
-    fechaFinalizacion: "",
-    metaFinanciera: "",
+    fechaLimite: "",
+    meta: "",
     recompensas: [],
   });
+
+  const transformFormData = (formData) => {
+    return {
+      titulo: formData.titulo,
+      descripcion: formData.descripcion,
+      metaDonacion: parseFloat(formData.meta) || 0,
+      recaudado: 0,
+      videoPromocional: formData.videoPromocional
+        ? formData.videoPromocional.name
+        : "",
+      imagenes: formData.imagenes
+        ? Array.from(formData.imagenes).map((file) => file.name)
+        : [],
+      fechaLimite: new Date(formData.fechaLimite).toISOString(),
+      categoria: formData.categoria,
+    };
+  };
 
   const [activeStep, setActiveStep] = useState(0);
   const [completed, setCompleted] = useState({});
@@ -46,25 +63,41 @@ export default function AccordionCrow() {
     setFormData((prev) => ({ ...prev, [field]: files }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Datos enviados:", formData);
-    // TODO Enviar a una API, etc.
+
+    const payload = transformFormData(formData);
+
+    console.log("Datos enviados:", payload);
+    try {
+      const response = await fetch(`${API_URL}crows/create`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        throw new Error("Error al crear el crow");
+      }
+
+      const data = await response.json();
+      console.log("Crow creado:", data);
+      alert("Crow creado con éxito");
+    } catch (error) {
+      console.error("Error al enviar:", error);
+    }
   };
 
   const handleStepChange = (step) => setActiveStep(step);
+
   const handleBack = () => setActiveStep((prev) => prev - 1);
+
   const handleNext = () => setActiveStep((prev) => prev + 1);
+
   const handleComplete = () => {
-    // TODO Invalidar el siguiente paso
-    /* 
-    if (activeStep === 0) {
-      if (!formData.titulo || !formData.descripcion || !formData.categoria) {
-        alert("Por favor completa todos los campos obligatorios.");
-        return;
-      }
-    }*/
-    console.log("Paso completado:", activeStep);
     setCompleted({ ...completed, [activeStep]: true });
     handleNext();
   };
@@ -187,15 +220,33 @@ export default function AccordionCrow() {
           {activeStep === 1 && (
             <div className="form-section-2">
               <FormAccordionSection
-                title="Fecha de finalización"
-                description="Introduce una fecha límite para tu proyecto."
+                title="Meta económica"
+                description="Establece la cantidad de dinero que necesitas recaudar."
                 numberSection="1"
               >
                 <TextField
-                  label="Fecha de finalización"
+                  label="Cantidad objetivo (€)"
+                  type="number"
+                  inputMode="numeric"
                   fullWidth
-                  value={formData.titulo}
-                  onChange={(e) => handleChange("titulo", e.target.value)}
+                  value={formData.meta}
+                  onChange={(e) => handleChange("meta", e.target.value)}
+                  inputProps={{ min: 0 }}
+                />
+              </FormAccordionSection>
+
+              <FormAccordionSection
+                title="Fecha de finalización"
+                description="Introduce una fecha límite para tu proyecto."
+                numberSection="2"
+              >
+                <TextField
+                  label="Fecha límite"
+                  type="date"
+                  fullWidth
+                  InputLabelProps={{ shrink: true }}
+                  value={formData.fechaLimite}
+                  onChange={(e) => handleChange("fechaLimite", e.target.value)}
                 />
               </FormAccordionSection>
             </div>
@@ -211,15 +262,17 @@ export default function AccordionCrow() {
               Atrás
             </Button>
 
-            {activeStep < steps.length - 1 ? (
+            {activeStep < steps.length - 1 && (
               <Button
+                type="button"
                 variant="contained"
                 onClick={handleComplete}
                 className="button-crow-next"
               >
                 Siguiente
               </Button>
-            ) : (
+            )}
+            {activeStep === steps.length - 1 && (
               <Button
                 variant="contained"
                 type="submit"

@@ -3,6 +3,7 @@ import WelcomePage from "../pages/WelcomePage";
 import HomePage from "../pages/HomePage";
 import CreateCrow from "../pages/CreateCrow";
 import ScrollToTop from "../components/ScrollToTop";
+import DiscoverPage from "../pages/DiscoverPage";
 
 function AppRoutes() {
   return (
@@ -12,6 +13,7 @@ function AppRoutes() {
         <Route path="/" element={<WelcomePage />} />
         <Route path="/home" element={<HomePage />} />ç
         <Route path="/create-crow" element={<CreateCrow />} />
+        <Route path="/discover" element={<DiscoverPage />} />
       </Routes>
     </BrowserRouter>
   );
