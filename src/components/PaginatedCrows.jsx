@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ReactPaginate from "react-paginate";
-import Crow from "./Crow";
+import CrowComponent from "./CrowComponent";
 
 import "../styles/components/PaginatedCrows.css"; // Puedes personalizarlo luego
 
@@ -19,7 +19,7 @@ const PaginatedCrows = ({ crows, itemsPerPage }) => {
     <>
       <div className="discover-crows-list">
         {currentItems.map((crow) => (
-          <Crow key={crow.id} crow={crow} />
+          <CrowComponent key={crow.id} crow={crow} />
         ))}
       </div>
       <ReactPaginate

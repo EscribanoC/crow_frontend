@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../styles/components/FeaturedCrows.css";
-import Crow from "./Crow";
+import CrowComponent from "./CrowComponent";
 
 const FeaturedCrows = () => {
   const [crows, setCrows] = useState([]);
@@ -67,7 +67,7 @@ const FeaturedCrows = () => {
         <h2>Otros Proyectos</h2>
         <div className="other-crows-list">
           {crows.map((crow, index) => (
-            <Crow key={index} crow={crow} />
+            <CrowComponent key={index} crow={crow} />
           ))}
         </div>
       </div>

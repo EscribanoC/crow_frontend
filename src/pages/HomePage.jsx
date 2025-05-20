@@ -6,15 +6,15 @@ import FeaturedCrows from "../components/FeaturedCrows";
 import { useNavigate } from "react-router-dom";
 
 import "../styles/general.css";
-import "../styles/HomePage.css";
+import "../styles/pages/HomePage.css";
 
 const HomePage = () => {
   const navigate = useNavigate();
 
   const images = [
-    "./images/carousel1.png",
-    "./images/carousel2.png",
-    "./images/carousel3.png",
+    "/images/carousel1.png",
+    "/images/carousel2.png",
+    "/images/carousel3.png",
   ];
 
   return (

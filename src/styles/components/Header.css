@@ -95,6 +95,11 @@
     }
 }
 
+.nav-item-active {
+    color: var(--color-3);
+    font-weight: 600;
+}
+
 
 @keyframes iluminacion {
     0% {

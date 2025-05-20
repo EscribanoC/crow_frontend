@@ -30,7 +30,7 @@ const DiscoverPage = () => {
   return (
     <div className="main-template">
       <div className="main-template-content">
-        <Header />
+        <Header navOption={"Descubre"} />
         <main className="main-container">
           <div className="discover-crows-container discover-crows-introduction">
             <div className="discover-crows-advertisement">

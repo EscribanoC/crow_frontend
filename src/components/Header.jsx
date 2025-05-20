@@ -1,10 +1,10 @@
-import React from "react";
-import "../styles/components/Header.css";
 import { useState, useEffect } from "react";
 import { fetchCurrentUser } from "../js/userService";
 import { useNavigate } from "react-router-dom";
 
-const Header = () => {
+import "../styles/components/Header.css";
+
+const Header = ({ navOption }) => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
 
@@ -24,15 +24,26 @@ const Header = () => {
     <header className="header">
       <nav className="nav">
         <ul className="nav-list">
-          <li className="nav-item" onClick={() => navigate("/discover")}>
+          <li
+            className={`nav-item ${
+              navOption === "Descubre" ? "nav-item-active" : ""
+            }`}
+            onClick={() => navigate("/discover")}
+          >
             Descubre
           </li>
-          <li className="nav-item">Para principiantes</li>
+          <li
+            className={`nav-item ${
+              navOption === "Principiantes" ? "nav-item-active" : ""
+            }`}
+          >
+            Para principiantes
+          </li>
         </ul>
       </nav>
       <div className="logoHeader">
         <div className="logoIcon" onClick={() => navigate("/home")}>
-          <img src="./images/Logo2.png"></img>
+          <img src="/images/Logo2.png"></img>
           <p className="logo">Crow</p>
         </div>
       </div>
@@ -45,7 +56,7 @@ const Header = () => {
         </button>
         <button className="image-button">
           <img
-            src="./images/Logo2.png"
+            src="/images/Logo2.png"
             alt="Avatar"
             className="image-icon"
             width={"35px"}

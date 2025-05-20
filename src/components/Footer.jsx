@@ -43,7 +43,7 @@ const Footer = () => {
           <div className="footer-company">
             <p>© 2025 Crow Company</p>
             <img
-              src="./images/Logo3.png"
+              src="/images/Logo3.png"
               alt="Crow Logo"
               className="footer-logo"
             />

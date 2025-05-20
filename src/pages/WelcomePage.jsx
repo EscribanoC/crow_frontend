@@ -4,7 +4,7 @@ import FeaturedCrows from "../components/FeaturedCrows";
 
 import { scrollToElement } from "../js/smooth-scroll";
 
-import "../styles/WelcomePage.css";
+import "../styles/pages/WelcomePage.css";
 import "../styles/components/welcomeButton.css";
 
 import InstagramIcon from "../assets/svg/instagram.svg?react";

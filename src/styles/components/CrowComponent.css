@@ -1,0 +1,85 @@
+.crow-item {
+    width: 250px;
+    height: 230px;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+}
+
+.crow-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+
+    .crow-item-user-name h3 {
+        margin: 0;
+        font-size: 20px;
+        white-space: wrap;
+        text-wrap: normal;
+        font-weight: 600;
+        text-overflow: none;
+    }
+}
+
+.crow-item-image-container {
+    height: 60%;
+    width: 100%;
+    background-color: var(--color-1);
+}
+
+.crow-item-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+
+}
+
+.crow-item-info {
+    height: 40%;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.crow-item-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+
+    width: 50%;
+}
+
+.crow-item-user-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background-color: var(--color-2);
+}
+
+.crow-item-user-icon-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.crow-item-user-name h3 {
+    margin: 0;
+    font-size: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 150px;
+    font-weight: 600;
+}
+
+.crow-item-user-name p {
+    margin: 4px 0 0 0;
+    font-size: 0.85rem;
+    color: #666;
+}
