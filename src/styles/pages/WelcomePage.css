@@ -238,6 +238,10 @@ html {
   padding: 20px;
 }
 
+.welcome-page-invisible {
+  display: none;
+}
+
 .animate-out {
   animation: translateOut 1s ease-in-out forwards;
   -webkit-animation: translateOut 1s ease-in-out forwards;
@@ -250,7 +254,6 @@ html {
 
 @keyframes translateOut {
   0% {
-    opacity: 1;
     transform: scale(1);
   }
 

@@ -5,6 +5,7 @@ import CreateCrow from "../pages/CreateCrow";
 import ScrollToTop from "../components/ScrollToTop";
 import DiscoverPage from "../pages/DiscoverPage";
 import Crow from "../pages/Crow";
+import Profile from "../pages/Profile";
 
 function AppRoutes() {
   return (
@@ -16,6 +17,7 @@ function AppRoutes() {
         <Route path="/create-crow" element={<CreateCrow />} />
         <Route path="/discover" element={<DiscoverPage />} />
         <Route path="/crow/:crowId" element={<Crow />} />
+        <Route path="/profile/:userId" element={<Profile />} />
       </Routes>
     </BrowserRouter>
   );

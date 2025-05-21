@@ -1,25 +1,13 @@
 import { useState, useEffect } from "react";
-import { fetchCurrentUser } from "../js/userService";
 import { useNavigate } from "react-router-dom";
+import { isAuthenticated } from "../js/utils/auth";
+import ProfileDropdown from "./ProfileDropdown";
 
 import "../styles/components/Header.css";
 
 const Header = ({ navOption }) => {
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
 
-  const API_URL = import.meta.env.VITE_API_URL;
-  /*
-  useEffect(() => {
-    const loadUser = async () => {
-      const userData = await fetchCurrentUser();
-      console.log(userData);
-      if (userData) setUser(userData);
-    };
-
-    loadUser();
-  }, []);
-*/
   return (
     <header className="header">
       <nav className="nav">
@@ -47,22 +35,26 @@ const Header = ({ navOption }) => {
           <p className="logo">Crow</p>
         </div>
       </div>
-      <div className="actions">
-        <button
-          className="start-button"
-          onClick={() => navigate("/create-crow")}
-        >
-          Empieza tu Crow
-        </button>
-        <button className="image-button">
-          <img
-            src="/images/Logo2.png"
-            alt="Avatar"
-            className="image-icon"
-            width={"35px"}
-          />
-        </button>
-      </div>
+      {isAuthenticated() ? (
+        <div className="actions">
+          <button
+            className="start-button"
+            onClick={() => navigate("/create-crow")}
+          >
+            Empieza tu Crow
+          </button>
+          <ProfileDropdown />
+        </div>
+      ) : (
+        <div className="actions">
+          <button
+            className="login-button"
+            onClick={() => navigate("/", { state: { openLoginModal: true } })}
+          >
+            Iniciar sesión
+          </button>
+        </div>
+      )}
     </header>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import LoginModal from "../components/LoginModal";
 import FeaturedCrows from "../components/FeaturedCrows";
+import { useLocation } from "react-router-dom";
 
 import { scrollToElement } from "../js/smooth-scroll";
 
@@ -13,6 +14,7 @@ import YoutubeIcon from "../assets/svg/youtube.svg?react";
 import XIcon from "../assets/svg/x.svg?react";
 
 function WelcomePage() {
+  const location = useLocation();
   const [showModal, setShowModal] = useState(false);
   const [animateContent, setAnimateContent] = useState(false);
   const [isModalToggling, setIsModalToggling] = useState(false);
@@ -51,6 +53,12 @@ function WelcomePage() {
     };
   }, []);
 
+  useEffect(() => {
+    if (location.state?.openLoginModal) {
+        toggleModal();
+    }
+  }, [location.state]);
+
   const handleScrollToHelp = () => {
     const pageCrows = document.getElementById(
       "featured-crows-container-welcome"
@@ -77,6 +85,7 @@ function WelcomePage() {
       </div>
 
       <div
+        id="welcome-page-content"
         className={`welcome-page-content ${
           animateContent ? "animate-out" : "animate-in"
         }`}
