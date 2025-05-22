@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import "../styles/pages/Crow.css";
 
 const Crow = () => {
   const { crowId } = useParams();
   const [crow, setCrow] = useState(null);
+  const navigate = useNavigate();
   const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
@@ -76,7 +78,12 @@ const Crow = () => {
                   </div>
                   <div className="line-separator"></div>
                   <div className="crow-user-container">
-                    <div className="crow-user-card">
+                    <div
+                      className="crow-user-card"
+                      onClick={() => {
+                        navigate(`/profile/${crow.usuario.usuario}`);
+                      }}
+                    >
                       <div className="crow-user-card-image">
                         <img
                           src={crow.usuario.avatar}
