@@ -55,7 +55,7 @@ const ProfileDropdown = () => {
           <button
             onClick={() => {
               toggleDropdown();
-              navigate(user ? `/profile/${user.id}` : "/home");
+              navigate(user ? `/profile/${user.usuario}` : "/home");
             }}
           >
             Mi perfil

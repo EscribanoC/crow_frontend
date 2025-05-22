@@ -3,21 +3,19 @@ import "../styles/components/FeaturedCrows.css";
 import CrowComponent from "./CrowComponent";
 
 const FeaturedCrows = () => {
-  const [crows, setCrows] = useState([]);
+  const [allCrows, setAllCrows] = useState([]);
+  const [visibleCrows, setVisibleCrows] = useState([]);
   const [crowOfTheWeek, setCrowOfTheWeek] = useState(null);
-  const [usuario, setUsuario] = useState(null);
 
   const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // 1. Obtener todos los crows
         const crowsResponse = await fetch(`${API_URL}crows`);
         const crowsData = await crowsResponse.json();
-        setCrows(crowsData.slice(0, 6));
+        setAllCrows(crowsData);
 
-        // 2. Obtener el crow de la semana
         const crowOfTheWeekResponse = await fetch(
           `${API_URL}crows/crowOfTheWeek`
         );
@@ -27,8 +25,26 @@ const FeaturedCrows = () => {
         console.error("Error during fetch:", error);
       }
     };
+
     fetchData();
   }, []);
+
+  useEffect(() => {
+    if (allCrows.length > 0) {
+      const calculateVisibleCrows = () => {
+        const width = window.innerWidth;
+        const count = width < 1599 ? (width < 1064 ? 2 : 4) : 6;
+        setVisibleCrows(allCrows.slice(0, count));
+      };
+
+      calculateVisibleCrows();
+
+      const handleResize = () => calculateVisibleCrows();
+      window.addEventListener("resize", handleResize);
+
+      return () => window.removeEventListener("resize", handleResize);
+    }
+  }, [allCrows]);
 
   return (
     <div className="featured-crows-container">
@@ -53,7 +69,6 @@ const FeaturedCrows = () => {
                   <p>{crowOfTheWeek.usuario.usuario}</p>
                 </div>
               </div>
-
               <div>
                 <p>{crowOfTheWeek.descripcion}</p>
               </div>
@@ -63,10 +78,11 @@ const FeaturedCrows = () => {
           <p>Cargando...</p>
         )}
       </div>
+
       <div className="other-crows-container">
         <h2>Otros Proyectos</h2>
         <div className="other-crows-list">
-          {crows.map((crow, index) => (
+          {visibleCrows.map((crow, index) => (
             <CrowComponent key={index} crow={crow} />
           ))}
         </div>

@@ -12,12 +12,25 @@ const CrowComponent = ({ crow }) => {
       </div>
       <div className="crow-item-info">
         <div className="crow-item-title">
-          <div className="crow-item-user-icon">
-            <img src={crow.usuario.avatar} className="crow-item-user-icon" />
+          <div
+            onClick={(e) => {
+              e.stopPropagation();
+              navigate(`/profile/${crow.usuario.usuario}`);
+            }}
+            className="crow-item-user-icon"
+          >
+            <img src={crow.usuario.avatar} />
           </div>
           <div className="crow-item-user-name">
             <h3>{crow.titulo}</h3>
-            <p>{crow.usuario.usuario}</p>
+            <p
+              onClick={(e) => {
+                e.stopPropagation();
+                navigate(`/profile/${crow.usuario.usuario}`);
+              }}
+            >
+              {crow.usuario.usuario}
+            </p>
           </div>
         </div>
       </div>

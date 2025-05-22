@@ -17,7 +17,7 @@ function AppRoutes() {
         <Route path="/create-crow" element={<CreateCrow />} />
         <Route path="/discover" element={<DiscoverPage />} />
         <Route path="/crow/:crowId" element={<Crow />} />
-        <Route path="/profile/:userId" element={<Profile />} />
+        <Route path="/profile/:username" element={<Profile />} />
       </Routes>
     </BrowserRouter>
   );
