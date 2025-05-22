@@ -13,7 +13,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background-image: url('../../public/images/tileable-background-bubble.png');
+    background-image: url('/images/tileable-background-bubble.png');
     background-blend-mode: luminosity;
     background-size: 600px;
     background-repeat: repeat;
