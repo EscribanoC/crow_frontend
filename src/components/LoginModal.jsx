@@ -52,6 +52,7 @@ function LoginModal({
       })
       .then((data) => {
         localStorage.setItem("token", data.token);
+        localStorage.setItem("username", data.username);
         toggleModal();
 
         if (redirectTo) {

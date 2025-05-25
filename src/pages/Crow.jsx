@@ -86,7 +86,29 @@ const Crow = () => {
                     </div>
                     <div className="crow-rewards">
                       <h3>Recompensas</h3>
-                      <p>Aquí irán las recompensas disponibles.</p>
+                      {crow.recompensas && crow.recompensas.length > 0 ? (
+                        <>
+                          {crow.recompensas.map((recompensa, index) => (
+                            <div key={index} className="reward">
+                              <div className="reward-image-container">
+                                <img src={`${API_URL + recompensa.imagen}`} />
+                              </div>
+                              <div className="reward-info">
+                                <h3>{recompensa.titulo}</h3>
+                                <p>{recompensa.descripcion}</p>
+                                <p> Meta: {recompensa.metaDonacion}</p>
+                              </div>
+                              <div className="donate-reward-button">
+                                <button className="crow-donate-button">
+                                  Donar
+                                </button>
+                              </div>
+                            </div>
+                          ))}
+                        </>
+                      ) : (
+                        <p>Sin recompensas</p>
+                      )}
                     </div>
                   </div>
                   <div className="line-separator"></div>

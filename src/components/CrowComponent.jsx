@@ -9,10 +9,11 @@ const CrowComponent = ({ crow }) => {
   return (
     <div className="crow-item" onClick={() => navigate(`/crow/${crow.id}`)}>
       <div className="crow-item-image-container">
-        <img
-          src={crow ? `${API_URL + crow.imagenes[0]}` : "prueba"}
-          className="crow-image"
-        />
+        {crow.imagenes && crow.imagenes.length > 0 ? (
+          <img src={`${API_URL + crow.imagenes[0]}`} className="crow-image" />
+        ) : (
+          <p>Sin fotos</p>
+        )}
       </div>
       <div className="crow-item-info">
         <div className="crow-item-title">

@@ -14,7 +14,7 @@
         justify-content: center;
         width: 100%;
         height: 500px;
-        background-color: var(--color-3);
+        background: linear-gradient(to top, var(--color-2), var(--color-1));
 
 
         .profile-picture {
@@ -37,6 +37,50 @@
         .profile-name {
             font-size: 24px;
             font-weight: bold;
+        }
+
+        button {
+            border: none;
+            padding: 10px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .button-is-following {
+            background-color: var(--color-1);
+            color: var(--color-5);
+
+        }
+
+        .button-is-not-following {
+            background-color: white;
+        }
+    }
+
+    .profile-description {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+        align-items: center;
+        padding: 50px 0;
+
+        h2 {
+            color: white;
+            font-size: 28px;
+        }
+
+        .profile-crows {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            width: 100%;
+            padding: 20px;
         }
     }
 }

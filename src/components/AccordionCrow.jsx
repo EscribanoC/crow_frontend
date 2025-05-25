@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import FormAccordionSection from "./FormAccordionSection";
 import CustomStepper from "./CustomStepper";
+import { useNavigate } from "react-router-dom";
 
 import "../styles/components/AccordionCrow.css";
 
@@ -23,6 +24,9 @@ export default function AccordionCrow() {
     "Recompensas",
     "Pasos finales",
   ];
+  const [numberOfRewards, setNumberOfRewards] = useState();
+
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     titulo: "",
@@ -67,6 +71,29 @@ export default function AccordionCrow() {
     formDataToSend.append("fechaLimite", formData.fechaLimite);
     formDataToSend.append("categoria", formData.categoria);
 
+    if (formData.recompensas.length > 0) {
+      formData.recompensas.forEach((recompensa, index) => {
+        formDataToSend.append(
+          `recompensas[${index}][titulo]`,
+          recompensa.titulo
+        );
+        formDataToSend.append(
+          `recompensas[${index}][descripcion]`,
+          recompensa.descripcion
+        );
+        formDataToSend.append(
+          `recompensas[${index}][metaDonacion]`,
+          recompensa.metaDonacion
+        );
+        if (recompensa.imagen) {
+          formDataToSend.append(
+            `recompensas[${index}][imagen]`,
+            recompensa.imagen
+          );
+        }
+      });
+    }
+
     //TODO Quitar eso siguiente
 
     for (let pair of formDataToSend.entries()) {
@@ -99,6 +126,7 @@ export default function AccordionCrow() {
       const data = await response.json();
       alert("Crow creado con éxito");
       console.log("Crow creado:", data);
+      navigate("/home");
     } catch (error) {
       console.error("Error al enviar:", error);
     }
@@ -261,6 +289,112 @@ export default function AccordionCrow() {
                   value={formData.fechaLimite}
                   onChange={(e) => handleChange("fechaLimite", e.target.value)}
                 />
+              </FormAccordionSection>
+            </div>
+          )}
+
+          {activeStep === 2 && (
+            <div className="form-section-4">
+              <FormAccordionSection
+                title="Recompensas"
+                description="Ahora elige cuántas recompensas tendrá tu Crow. Estas recompensas serán para premiar a los donantes que lleguen a una meta de donación. Como máximo podrás poner 5 recompensas."
+                numberSection="1"
+              >
+                <TextField
+                  label="Número de recompensas"
+                  type="number"
+                  inputProps={{ min: 0, max: 5 }}
+                  value={numberOfRewards}
+                  onChange={(e) => {
+                    const value = Math.min(
+                      5,
+                      Math.max(0, parseInt(e.target.value) || 0)
+                    );
+                    setNumberOfRewards(value);
+
+                    // Ajustar tamaño del array de recompensas según el número
+                    setFormData((prev) => ({
+                      ...prev,
+                      recompensas: Array.from(
+                        { length: value },
+                        (_, i) =>
+                          prev.recompensas[i] || {
+                            titulo: "",
+                            descripcion: "",
+                            imagen: null,
+                            metaDonacion: "",
+                          }
+                      ),
+                    }));
+                  }}
+                  fullWidth
+                  margin="normal"
+                />
+
+                {/* Render dinámico de los formularios de recompensa */}
+                {Array.from({ length: numberOfRewards }).map((_, index) => (
+                  <Box
+                    key={index}
+                    mb={3}
+                    p={2}
+                    border="1px solid #ccc"
+                    borderRadius="8px"
+                  >
+                    <h4>Recompensa {index + 1}</h4>
+                    <TextField
+                      label="Título"
+                      fullWidth
+                      margin="normal"
+                      value={formData.recompensas[index]?.titulo || ""}
+                      onChange={(e) => {
+                        const updated = [...formData.recompensas];
+                        updated[index].titulo = e.target.value;
+                        setFormData({ ...formData, recompensas: updated });
+                      }}
+                    />
+                    <TextField
+                      label="Descripción"
+                      fullWidth
+                      multiline
+                      rows={2}
+                      margin="normal"
+                      value={formData.recompensas[index]?.descripcion || ""}
+                      onChange={(e) => {
+                        const updated = [...formData.recompensas];
+                        updated[index].descripcion = e.target.value;
+                        setFormData({ ...formData, recompensas: updated });
+                      }}
+                    />
+                    <TextField
+                      label="Meta de donación (€)"
+                      type="number"
+                      fullWidth
+                      margin="normal"
+                      inputProps={{ min: 0 }}
+                      value={formData.recompensas[index]?.metaDonacion || ""}
+                      onChange={(e) => {
+                        const updated = [...formData.recompensas];
+                        updated[index].metaDonacion = e.target.value;
+                        setFormData({ ...formData, recompensas: updated });
+                      }}
+                    />
+                    <FormControl fullWidth margin="normal">
+                      <InputLabel shrink htmlFor={`reward-image-${index}`}>
+                        Imagen de la recompensa
+                      </InputLabel>
+                      <input
+                        id={`reward-image-${index}`}
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => {
+                          const updated = [...formData.recompensas];
+                          updated[index].imagen = e.target.files[0];
+                          setFormData({ ...formData, recompensas: updated });
+                        }}
+                      />
+                    </FormControl>
+                  </Box>
+                ))}
               </FormAccordionSection>
             </div>
           )}
