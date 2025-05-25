@@ -26,14 +26,14 @@
     height: 60%;
     width: 100%;
     background-color: var(--color-1);
+    border-radius: 16px;
+    overflow: hidden;
 }
 
-.crow-item-image {
+.crow-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
-
 }
 
 .crow-item-info {
@@ -67,7 +67,7 @@
     transition: scale 0.3s ease;
 }
 
-.crow-item-user-icon-img {
+.crow-item-user-icon img {
     width: 100%;
     height: 100%;
     object-fit: cover;

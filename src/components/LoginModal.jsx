@@ -73,7 +73,7 @@ function LoginModal({
     const password = formData.get("passwordRegister");
     const repeatPassword = formData.get("repeatPasswordRegister");
     const genero = formData.get("generoRegister");
-    const avatar = formData.get("avatarRegister");
+    const avatarFile = event.target.avatarRegister.files[0];
 
     if (password !== repeatPassword) {
       alert("Passwords do not match.");
@@ -81,13 +81,13 @@ function LoginModal({
     }
 
     const payload = new FormData();
-    if (avatar) {
-      payload.append("avatar", avatar);
-    }
     payload.append("email", email);
     payload.append("usuario", usuario);
     payload.append("password", password);
     payload.append("genero", genero);
+    if (avatarFile) {
+      payload.append("avatar", avatarFile);
+    }
 
     fetch(`${API_URL}auth/register`, {
       method: "POST",
@@ -100,12 +100,12 @@ function LoginModal({
         return response.json();
       })
       .then(() => {
-        alert("Registration successful! Please log in.");
+        alert("¡Registro exitoso! Inicia sesión.");
         setIsRegistering(false);
       })
       .catch((error) => {
-        console.error("Error during registration:", error);
-        alert("Registration failed. Please try again.");
+        console.error("Error durante el registro:", error);
+        alert("Error durante el registro. Inténtalo de nuevo.");
       });
   };
 

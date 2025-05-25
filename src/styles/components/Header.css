@@ -84,15 +84,7 @@
         animation: iluminacion 1.5s ease-in-out infinite;
     }
 
-    .image-profile-button {
-        padding: 5px;
-        font-size: 1.2rem;
-        background: none;
-        border: none;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-    }
+
 
     .login-button {
         padding: 8px 13px;

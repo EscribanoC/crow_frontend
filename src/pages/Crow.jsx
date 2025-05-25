@@ -39,11 +39,24 @@ const Crow = () => {
                   <h1 className="crow-title">{crow.titulo}</h1>
                   <div className="crow-main-info">
                     <div className="crow-image-container">
-                      <img
+                      {/*
+                        <img
                         src={crow.imagen}
                         alt={crow.titulo}
                         className="crow-main-image"
                       />
+                      
+                      */}
+                      <video width="100%" controls>
+                        <source
+                          src={
+                            crow
+                              ? `${API_URL + crow.videoPromocional}`
+                              : "example"
+                          }
+                          type="video/mp4"
+                        ></source>
+                      </video>
                     </div>
                     <div className="crow-stats">
                       <p>
@@ -86,7 +99,11 @@ const Crow = () => {
                     >
                       <div className="crow-user-card-image">
                         <img
-                          src={crow.usuario.avatar}
+                          src={
+                            crow
+                              ? `${API_URL + crow.usuario.avatar}`
+                              : "example"
+                          }
                           alt={crow.usuario.usuario}
                           className="crow-user-avatar"
                         />

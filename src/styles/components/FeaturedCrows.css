@@ -43,9 +43,15 @@
                     .crow-of-the-week-user-icon {
                         border-radius: 100%;
                         overflow: hidden;
-                        width: 35px;
-                        height: 35px;
+                        width: 48px;
+                        height: 48px;
                         background-color: var(--color-2);
+                    }
+
+                    .crow-user-icon {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
                     }
                 }
             }

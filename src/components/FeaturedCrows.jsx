@@ -59,7 +59,11 @@ const FeaturedCrows = () => {
               <div className="crow-of-the-week-title">
                 <div className="crow-of-the-week-user-icon">
                   <img
-                    src={crowOfTheWeek.usuario.avatar}
+                    src={
+                      crowOfTheWeek.usuario
+                        ? `${API_URL + crowOfTheWeek.usuario.avatar}`
+                        : "example"
+                    }
                     className="crow-user-icon"
                     alt="User Avatar"
                   />

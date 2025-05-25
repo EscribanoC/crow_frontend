@@ -46,7 +46,7 @@ const Profile = () => {
               <div className="profile-header">
                 <div className="profile-picture">
                   <img
-                    src={userData.avatar}
+                    src={userData ? `${API_URL + userData.avatar}` : "example"}
                     alt="Foto de perfil"
                     className="profile-picture-image"
                   />

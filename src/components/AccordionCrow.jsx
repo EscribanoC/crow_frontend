@@ -31,26 +31,9 @@ export default function AccordionCrow() {
     imagenes: [],
     videoPromocional: null,
     fechaLimite: "",
-    meta: "",
+    meta: 0,
     recompensas: [],
   });
-
-  const transformFormData = (formData) => {
-    return {
-      titulo: formData.titulo,
-      descripcion: formData.descripcion,
-      metaDonacion: parseFloat(formData.meta) || 0,
-      recaudado: 0,
-      videoPromocional: formData.videoPromocional
-        ? formData.videoPromocional.name
-        : "",
-      imagenes: formData.imagenes
-        ? Array.from(formData.imagenes).map((file) => file.name)
-        : [],
-      fechaLimite: new Date(formData.fechaLimite).toISOString(),
-      categoria: formData.categoria,
-    };
-  };
 
   const [activeStep, setActiveStep] = useState(0);
   const [completed, setCompleted] = useState({});
@@ -65,18 +48,48 @@ export default function AccordionCrow() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const formDataToSend = new FormData();
 
-    const payload = transformFormData(formData);
+    formDataToSend.append("titulo", formData.titulo);
+    formDataToSend.append("descripcion", formData.descripcion);
 
-    console.log("Datos enviados:", payload);
+    if (formData.videoPromocional) {
+      formDataToSend.append("videoPresentacion", formData.videoPromocional);
+    }
+
+    if (formData.imagenes && formData.imagenes.length > 0) {
+      for (const img of formData.imagenes) {
+        formDataToSend.append("imagenesGaleria", img);
+      }
+    }
+
+    formDataToSend.append("meta", parseFloat(formData.meta || 0));
+    formDataToSend.append("fechaLimite", formData.fechaLimite);
+    formDataToSend.append("categoria", formData.categoria);
+
+    //TODO Quitar eso siguiente
+
+    for (let pair of formDataToSend.entries()) {
+      console.log(pair[0] + ": " + pair[1]);
+    }
+
+    const MAX_VIDEO_SIZE = 100 * 1024 * 1024;
+
+    if (
+      formData.videoPromocional &&
+      formData.videoPromocional.size > MAX_VIDEO_SIZE
+    ) {
+      alert("El video excede el tamaño máximo permitido de 100MB.");
+      return;
+    }
+
     try {
       const response = await fetch(`${API_URL}crows/create`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
-        body: JSON.stringify(payload),
+        body: formDataToSend,
       });
 
       if (!response.ok) {
@@ -84,8 +97,8 @@ export default function AccordionCrow() {
       }
 
       const data = await response.json();
-      console.log("Crow creado:", data);
       alert("Crow creado con éxito");
+      console.log("Crow creado:", data);
     } catch (error) {
       console.error("Error al enviar:", error);
     }
@@ -207,7 +220,7 @@ export default function AccordionCrow() {
                   <input
                     id="video-upload"
                     type="file"
-                    accept="video/*"
+                    accept="video/mp4"
                     onChange={(e) =>
                       handleFileChange("videoPromocional", e.target.files[0])
                     }

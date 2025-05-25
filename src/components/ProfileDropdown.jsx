@@ -9,6 +9,7 @@ const ProfileDropdown = () => {
   const [user, setUser] = useState(null);
   const dropdownRef = useRef();
   const navigate = useNavigate();
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const toggleDropdown = () => {
     setOpen(!open);
@@ -36,17 +37,16 @@ const ProfileDropdown = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    navigate("/");
+    navigate("/home");
   };
 
   return (
     <div className="profile-dropdown" ref={dropdownRef}>
       <button className="image-profile-button" onClick={toggleDropdown}>
         <img
-          src={user ? user.avatar : "/images/Logo2.png"}
+          src={user ? `${API_URL + user.avatar}` : "example"}
           alt="Avatar"
           className="image-icon"
-          width={"35px"}
         />
       </button>
 
