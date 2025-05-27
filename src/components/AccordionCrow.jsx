@@ -12,6 +12,7 @@ import {
 import FormAccordionSection from "./FormAccordionSection";
 import CustomStepper from "./CustomStepper";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 import "../styles/components/AccordionCrow.css";
 
@@ -94,19 +95,17 @@ export default function AccordionCrow() {
       });
     }
 
-    //TODO Quitar eso siguiente
-
-    for (let pair of formDataToSend.entries()) {
-      console.log(pair[0] + ": " + pair[1]);
-    }
-
     const MAX_VIDEO_SIZE = 100 * 1024 * 1024;
 
     if (
       formData.videoPromocional &&
       formData.videoPromocional.size > MAX_VIDEO_SIZE
     ) {
-      alert("El video excede el tamaño máximo permitido de 100MB.");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El vídeo no puede ceder los 100 MB. ",
+      });
       return;
     }
 
@@ -120,12 +119,20 @@ export default function AccordionCrow() {
       });
 
       if (!response.ok) {
-        throw new Error("Error al crear el crow");
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Algo ha ido mal creando el Crow...",
+        });
+        return;
       }
 
-      const data = await response.json();
-      alert("Crow creado con éxito");
-      console.log("Crow creado:", data);
+      Swal.fire({
+        title: "¡Crow Creado!",
+        icon: "success",
+        timer: 3000,
+      });
+
       navigate("/home");
     } catch (error) {
       console.error("Error al enviar:", error);

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../styles/components/LoginModal.css";
 import "../styles/components/welcomeButton.css";
 import ProfileImageUploader from "./ProfileImageUploader";
+import Swal from "sweetalert2";
 
 function LoginModal({
   toggleModal,
@@ -46,6 +47,11 @@ function LoginModal({
     })
       .then((response) => {
         if (!response.ok) {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "No se ha podido iniciar sesión. ¿Has introducido correctamente los datos?",
+          });
           throw new Error("Failed to authenticate");
         }
         return response.json();
@@ -61,7 +67,11 @@ function LoginModal({
       })
       .catch((error) => {
         console.error("Error during login:", error);
-        alert("Login failed. Please try again.");
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "No se ha podido iniciar sesión. ¿Has introducido correctamente los datos?",
+          });
       });
   };
 
@@ -77,7 +87,11 @@ function LoginModal({
     const avatarFile = event.target.avatarRegister.files[0];
 
     if (password !== repeatPassword) {
-      alert("Passwords do not match.");
+      Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Las contraseñas no coinciden",
+          });
       return;
     }
 
@@ -96,17 +110,30 @@ function LoginModal({
     })
       .then((response) => {
         if (!response.ok) {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "No se ha podido registrar el usuario.",
+          });
           throw new Error("Failed to register");
         }
         return response.json();
       })
       .then(() => {
-        alert("¡Registro exitoso! Inicia sesión.");
+        Swal.fire({
+          title: "Usuario registrado.",
+          icon: "success",
+          timer: 3000,
+        });
         setIsRegistering(false);
       })
       .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "No se ha podido registrar el usuario.",
+        });
         console.error("Error durante el registro:", error);
-        alert("Error durante el registro. Inténtalo de nuevo.");
       });
   };
 

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { isAuthenticated } from "../js/utils/auth";
 import ProfileDropdown from "./ProfileDropdown";
+import NotificationDropdown from "./NotificationDropdown";
 
 import "../styles/components/Header.css";
 
@@ -37,6 +38,7 @@ const Header = ({ navOption }) => {
       </div>
       {isAuthenticated() ? (
         <div className="actions">
+          <NotificationDropdown />
           <button
             className="start-button"
             onClick={() => navigate("/create-crow")}

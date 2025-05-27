@@ -1,0 +1,21 @@
+.notification-item {
+    padding: 10px;
+    width: 100%;
+    font-size: 18px;
+    font-weight: 200;
+    color: white;
+
+    a {
+        text-decoration: underline;
+        color: var(--color-1);
+        font-weight: 400;
+    }
+
+    a:hover {
+        cursor: pointer;
+    }
+}
+
+.notification-item:hover {
+    background-color: var(--color-5-button-hover);
+}

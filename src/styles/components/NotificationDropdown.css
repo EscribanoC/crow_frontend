@@ -1,0 +1,67 @@
+.notif-container {
+    position: relative;
+    display: inline-block;
+}
+
+.notif-button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+
+    .notification-icon {
+        color: var(--color-3);
+        scale: 1.1;
+    }
+}
+
+.notif-dot {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    height: 8px;
+    width: 8px;
+    background-color: var(--color-1);
+    border-radius: 50%;
+}
+
+.notif-dropdown {
+    position: absolute;
+    right: -140px;
+    top: 40px;
+    width: 300px;
+    background-color: var(--color-5);
+    border: 1px solid rgb(163, 163, 163);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.notif-header {
+    padding: 10px;
+    font-weight: 800;
+    font-size: 20px;
+    color: var(--color-1);
+    background-color: var(--color-header);
+}
+
+.notif-empty {
+    padding: 10px;
+    font-size: 14px;
+    color: #777;
+}
+
+
+
+.notif-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
