@@ -15,7 +15,7 @@
     padding: 5px;
 
     .notification-icon {
-        color: var(--color-3);
+        color: var(--color-4);
         scale: 1.1;
     }
 }
@@ -55,7 +55,7 @@
 .notif-empty {
     padding: 10px;
     font-size: 14px;
-    color: #777;
+    color: white;
 }
 
 

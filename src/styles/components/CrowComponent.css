@@ -23,6 +23,9 @@
 }
 
 .crow-item-image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 60%;
     width: 100%;
     background-color: var(--color-1);

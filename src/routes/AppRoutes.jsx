@@ -6,6 +6,8 @@ import ScrollToTop from "../components/ScrollToTop";
 import DiscoverPage from "../pages/DiscoverPage";
 import Crow from "../pages/Crow";
 import Profile from "../pages/Profile";
+import PrivateRoute from "./PrivateRoute";
+import AdminDashboard from "../pages/admin/AdminDashboard";
 
 function AppRoutes() {
   return (
@@ -18,6 +20,14 @@ function AppRoutes() {
         <Route path="/discover" element={<DiscoverPage />} />
         <Route path="/crow/:crowId" element={<Crow />} />
         <Route path="/profile/:username" element={<Profile />} />
+        <Route
+          path="/admin/*"
+          element={
+            <PrivateRoute requiredRole="ROLE_ADMIN">
+              <AdminDashboard />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

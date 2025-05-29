@@ -12,19 +12,17 @@ function NotificationDropdown() {
   const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
-    if (open) {
-      const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token");
 
-      axios
-        .get(`${API_URL}notificaciones/propias`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((res) => setNotificaciones(res.data))
-        .catch((err) => console.error("Error cargando notificaciones:", err));
-    }
-  }, [open]);
+    axios
+      .get(`${API_URL}notificaciones/propias`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => setNotificaciones(res.data))
+      .catch((err) => console.error("Error cargando notificaciones:", err));
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -36,11 +34,19 @@ function NotificationDropdown() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const handleMarkAsRead = (id) => {
+    setNotificaciones((prev) =>
+      prev.map((n) => (n.id === id ? { ...n, leida: true } : n))
+    );
+  };
+
   return (
     <div className="notif-container" ref={dropdownRef}>
       <button className="notif-button" onClick={() => setOpen(!open)}>
-        <Bell className="notification-icon"/>
-        {notificaciones.length > 0 && <span className="notif-dot"></span>}
+        <Bell className="notification-icon" />
+        {notificaciones.some((n) => !n.leida) && (
+          <span className="notif-dot"></span>
+        )}
       </button>
 
       {open && (
@@ -51,7 +57,11 @@ function NotificationDropdown() {
           ) : (
             <ul className="notif-list">
               {notificaciones.map((n) => (
-                <NotificationItem key={n.id} notificacion={n} />
+                <NotificationItem
+                  key={n.id}
+                  notificacion={n}
+                  onRead={handleMarkAsRead}
+                />
               ))}
             </ul>
           )}

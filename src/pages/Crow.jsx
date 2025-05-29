@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import CrowCategory from "../components/CrowCategory";
 
 import "../styles/pages/Crow.css";
 
@@ -39,14 +40,6 @@ const Crow = () => {
                   <h1 className="crow-title">{crow.titulo}</h1>
                   <div className="crow-main-info">
                     <div className="crow-image-container">
-                      {/*
-                        <img
-                        src={crow.imagen}
-                        alt={crow.titulo}
-                        className="crow-main-image"
-                      />
-                      
-                      */}
                       <video width="100%" controls>
                         <source
                           src={
@@ -80,9 +73,7 @@ const Crow = () => {
                     <div className="crow-description">
                       <h2>Descripción</h2>
                       <p>{crow.descripcion}</p>
-                      <div className="crow-category">
-                        <p>{crow.categoria} </p>
-                      </div>
+                      <CrowCategory category={crow.categoria} />
                     </div>
                     <div className="crow-rewards">
                       <h3>Recompensas</h3>

@@ -38,6 +38,7 @@ const ProfileDropdown = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
+    localStorage.removeItem("role");
     navigate("/home");
   };
 

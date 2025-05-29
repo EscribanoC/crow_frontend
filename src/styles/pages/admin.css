@@ -1,0 +1,111 @@
+.admin-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    font-family: 'Jost', sans-serif;
+    font-style: normal;
+    background-color: var(--color-5);
+}
+
+.admin-header {
+    background-color: var(--color-header);
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+
+    .logout-admin-button {
+        left: 10%;
+        position: absolute;
+        padding: 15px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        background-color: var(--color-2);
+        font-family: 'Jost', sans-serif;
+        font-style: normal;
+        font-size: 15px;
+        font-weight: 300;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .logout-admin-button:hover {
+        background-color: var(--color-2-button-hover);
+        color: white;
+    }
+}
+
+.admin-logo {
+    height: 30px;
+}
+
+.logo {
+    font-size: 33px;
+    font-weight: 600;
+    text-align: center;
+    color: white;
+}
+
+.admin-body {
+    display: flex;
+    flex: 1;
+    min-width: 80%;
+    background-color: white;
+}
+
+.admin-sidebar {
+    width: 200px;
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-right: 1px solid #ccc;
+}
+
+.admin-sidebar h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.admin-sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-item {
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-bottom: 6px;
+    transition: background-color 0.3s;
+}
+
+.sidebar-item:hover {
+    background-color: #e0e0e0;
+}
+
+.sidebar-item.active {
+    background-color: #d0d0d0;
+    font-weight: bold;
+}
+
+.admin-panel {
+    flex: 1;
+    padding: 20px;
+}
+
+.admin-panel h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.admin-panel-content {
+    background-color: #fff;
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}

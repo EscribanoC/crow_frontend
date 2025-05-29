@@ -2,13 +2,32 @@ import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import PaginatedCrows from "../components/PaginatedCrows";
+import { useLocation } from "react-router-dom";
 
 import "../styles/pages/DiscoverPage.css";
 import { useState, useEffect } from "react";
 
 const DiscoverPage = () => {
+  const location = useLocation();
+  const firstCategory = location.state?.firstCategory || "Todos";
   const [crows, setCrows] = useState([]);
+  const [crowsFiltered, setCrowsFiltered] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(
+    firstCategory ? firstCategory : "Todos"
+  );
+  const [searchTerm, setSearchTerm] = useState("");
   const API_URL = import.meta.env.VITE_API_URL;
+
+  const categoryMap = {
+    Todos: null,
+    Libros: "LIBRO",
+    "Juegos de mesa": "JUEGODEMESA",
+    Audiovisual: "AUDIOVISUAL",
+    Videojuegos: "VIDEOJUEGO",
+    Diseño: "DISENO",
+    Ropa: "ROPA",
+    Otros: "OTRO",
+  };
 
   useEffect(() => {
     const loadCrows = async () => {
@@ -19,6 +38,7 @@ const DiscoverPage = () => {
         }
         const data = await response.json();
         setCrows(data);
+        setCrowsFiltered(data);
       } catch (error) {
         console.error("Error fetching crows:", error);
       }
@@ -26,6 +46,38 @@ const DiscoverPage = () => {
 
     loadCrows();
   }, []);
+
+  useEffect(() => {
+    let filtered = [...crows];
+
+    const categoryEnum = categoryMap[selectedCategory];
+    if (categoryEnum) {
+      filtered = filtered.filter((crow) => crow.categoria === categoryEnum);
+    }
+
+    if (searchTerm.trim() !== "") {
+      const term = searchTerm.toLowerCase().trim();
+      filtered = filtered.filter(
+        (crow) =>
+          crow.titulo.toLowerCase().includes(term) ||
+          crow.usuario.usuario.toLowerCase().includes(term)
+      );
+    }
+
+    setCrowsFiltered(filtered);
+  }, [searchTerm, selectedCategory, crows]);
+
+  const filterByCategory = (categoryLabel) => {
+    setSelectedCategory(categoryLabel);
+    const categoryEnum = categoryMap[categoryLabel];
+
+    if (!categoryEnum) {
+      setCrowsFiltered(crows);
+    } else {
+      const filtered = crows.filter((crow) => crow.categoria === categoryEnum);
+      setCrowsFiltered(filtered);
+    }
+  };
 
   return (
     <div className="main-template">
@@ -44,49 +96,59 @@ const DiscoverPage = () => {
 
               <h1 className="section-title">Descubre</h1>
             </div>
+
             <div className="discover-crows-content">
               <ul className="discover-crows-navbar">
-                <li>
-                  <button className="discover-crows-navbar-button">
-                    Todos
-                  </button>
-                </li>
-                <li>
-                  <button className="discover-crows-navbar-button">
-                    Libros
-                  </button>
-                </li>
-                <li>
-                  <button className="discover-crows-navbar-button">
-                    Juegos de mesa
-                  </button>
-                </li>
-                <li>
-                  <button className="discover-crows-navbar-button">
-                    Audiovisual
-                  </button>
-                </li>
-                <li>
-                  <button className="discover-crows-navbar-button">
-                    Videojuegos
-                  </button>
-                </li>
-                <li>
-                  <button className="discover-crows-navbar-button">
-                    Diseño
-                  </button>
-                </li>
-                <li>
-                  <button className="discover-crows-navbar-button">Ropa</button>
-                </li>
-                <li>
-                  <button className="discover-crows-navbar-button">
-                    Otros
-                  </button>
-                </li>
+                {Object.keys(categoryMap).map((label) => (
+                  <li key={label}>
+                    <button
+                      className={`discover-crows-navbar-button ${
+                        selectedCategory === label ? "categoryActive" : ""
+                      }`}
+                      onClick={() => {
+                        filterByCategory(label);
+                        setSearchTerm("");
+                      }}
+                    >
+                      {label}
+                    </button>
+                  </li>
+                ))}
               </ul>
 
-              <PaginatedCrows crows={crows} itemsPerPage={8} />
+              <div className="filter">
+                <label
+                  className="discover-search-label"
+                  htmlFor="discover-search"
+                >
+                  Busca:{" "}
+                </label>
+                <div className="discover-search-wrapper">
+                  <input
+                    id="discover-search"
+                    type="text"
+                    placeholder="Crows, usuario..."
+                    className="discover-search-input"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                  />
+                  {searchTerm && (
+                    <button
+                      className="discover-clear-button"
+                      onClick={() => setSearchTerm("")}
+                    >
+                      ×
+                    </button>
+                  )}
+                </div>
+              </div>
+              {crowsFiltered.length > 0 ? (
+                <PaginatedCrows crows={crowsFiltered} itemsPerPage={8} />
+              ) : (
+                <div className="noResultsCrows">
+                  <p>Sin resultados</p>
+                </div>
+              )}
             </div>
           </div>
         </main>

@@ -9,6 +9,7 @@ export const isAuthenticated = () => {
     if (Date.now() >= exp * 1000) {
       localStorage.removeItem("token");
       localStorage.removeItem("user");
+      localStorage.removeItem("role");
       return false;
     }
     return true;

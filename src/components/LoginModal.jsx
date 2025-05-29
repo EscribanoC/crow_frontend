@@ -5,11 +5,7 @@ import "../styles/components/welcomeButton.css";
 import ProfileImageUploader from "./ProfileImageUploader";
 import Swal from "sweetalert2";
 
-function LoginModal({
-  toggleModal,
-  redirectTo = null,
-  animateContent = false,
-}) {
+function LoginModal({ toggleModal, animateContent = false }) {
   const navigate = useNavigate();
   const [isRegistering, setIsRegistering] = useState(false);
   const [generos, setGeneros] = useState([]);
@@ -59,19 +55,22 @@ function LoginModal({
       .then((data) => {
         localStorage.setItem("token", data.token);
         localStorage.setItem("username", data.username);
+        localStorage.setItem("role", data.role);
         toggleModal();
 
-        if (redirectTo) {
-          navigate(redirectTo);
+        if (data.role === "ROLE_ADMIN") {
+          navigate("/admin/dashboard");
+        } else {
+          navigate("/home");
         }
       })
       .catch((error) => {
         console.error("Error during login:", error);
         Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "No se ha podido iniciar sesión. ¿Has introducido correctamente los datos?",
-          });
+          icon: "error",
+          title: "Oops...",
+          text: "No se ha podido iniciar sesión. ¿Has introducido correctamente los datos?",
+        });
       });
   };
 
@@ -88,10 +87,10 @@ function LoginModal({
 
     if (password !== repeatPassword) {
       Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Las contraseñas no coinciden",
-          });
+        icon: "error",
+        title: "Oops...",
+        text: "Las contraseñas no coinciden",
+      });
       return;
     }
 

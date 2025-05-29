@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "../styles/components/FeaturedCrows.css";
 import CrowComponent from "./CrowComponent";
+import { useNavigate } from "react-router-dom";
 
 const FeaturedCrows = () => {
   const [allCrows, setAllCrows] = useState([]);
   const [visibleCrows, setVisibleCrows] = useState([]);
   const [crowOfTheWeek, setCrowOfTheWeek] = useState(null);
+  const navigate = useNavigate();
 
   const API_URL = import.meta.env.VITE_API_URL;
 
@@ -51,13 +53,29 @@ const FeaturedCrows = () => {
       <div className="crow-of-the-week-container">
         <h2>Proyecto de la semana</h2>
         {crowOfTheWeek ? (
-          <div className="crow-of-the-week-content">
+          <div
+            className="crow-of-the-week-content"
+            onClick={() => navigate(`/crow/${crowOfTheWeek.id}`)}
+          >
             <div className="crow-of-the-week-image-container">
-              <img src={crowOfTheWeek.imagen} className="crow-image" />
+              {crowOfTheWeek.imagenes && crowOfTheWeek.imagenes.length > 0 ? (
+                <img
+                  src={`${API_URL + crowOfTheWeek.imagenes[0]}`}
+                  className="crow-image"
+                />
+              ) : (
+                <p>Sin fotos</p>
+              )}
             </div>
             <div className="crow-of-the-week-info">
               <div className="crow-of-the-week-title">
-                <div className="crow-of-the-week-user-icon">
+                <div
+                  className="crow-of-the-week-user-icon"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    navigate(`/profile/${crowOfTheWeek.usuario.usuario}`);
+                  }}
+                >
                   <img
                     src={
                       crowOfTheWeek.usuario
@@ -70,11 +88,22 @@ const FeaturedCrows = () => {
                 </div>
                 <div className="crow-of-the-week-user-name">
                   <h3>{crowOfTheWeek.titulo}</h3>
-                  <p>{crowOfTheWeek.usuario.usuario}</p>
+                  <p
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate(`/profile/${crowOfTheWeek.usuario.usuario}`);
+                    }}
+                  >
+                    {crowOfTheWeek.usuario.usuario}
+                  </p>
                 </div>
               </div>
-              <div>
+              <div className="crow-of-the-week-description">
                 <p>{crowOfTheWeek.descripcion}</p>
+              </div>
+
+              <div className="crow-category">
+                <p>{crowOfTheWeek.categoria} </p>
               </div>
             </div>
           </div>

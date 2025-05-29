@@ -173,7 +173,6 @@ function WelcomePage() {
       {showModal && (
         <LoginModal
           toggleModal={toggleModal}
-          redirectTo="/home"
           animateContent={animateContent}
         />
       )}
