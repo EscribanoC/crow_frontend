@@ -15,12 +15,14 @@ const CrowCategory = ({ category }) => {
   const formattedCategory = categoryMap[category] || category;
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    navigate("/discover", { state: { firstCategory: formattedCategory } });
-  };
-
   return (
-    <div className="crow-category" onClick={handleClick}>
+    <div
+      className="crow-category"
+      onClick={(e) => {
+        e.stopPropagation();
+        navigate("/discover", { state: { firstCategory: formattedCategory } });
+      }}
+    >
       <p>{formattedCategory} </p>
     </div>
   );

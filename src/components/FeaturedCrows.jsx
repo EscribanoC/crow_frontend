@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../styles/components/FeaturedCrows.css";
 import CrowComponent from "./CrowComponent";
 import { useNavigate } from "react-router-dom";
+import CrowCategory from "../components/CrowCategory";
 
 const FeaturedCrows = () => {
   const [allCrows, setAllCrows] = useState([]);
@@ -102,9 +103,7 @@ const FeaturedCrows = () => {
                 <p>{crowOfTheWeek.descripcion}</p>
               </div>
 
-              <div className="crow-category">
-                <p>{crowOfTheWeek.categoria} </p>
-              </div>
+              <CrowCategory category={crowOfTheWeek.categoria} />
             </div>
           </div>
         ) : (
