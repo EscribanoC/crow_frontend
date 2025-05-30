@@ -1,14 +1,16 @@
 import React from "react";
+import UsuarioTable from "./UsuarioTable";
 
 function AdminPanel({ selectedEntity }) {
   return (
     <main className="admin-panel">
-      <h2>Gestionar: {selectedEntity}</h2>
+      <h2>{selectedEntity}</h2>
       <div className="admin-panel-content">
-        <p>
-          Aquí se mostrarán los formularios y funcionalidades para{" "}
-          <strong>{selectedEntity}</strong>.
-        </p>
+        {selectedEntity === "Usuarios" ? (
+          <UsuarioTable />
+        ) : (
+          <p>Selecciona una entidad para gestionar.</p>
+        )}
       </div>
     </main>
   );

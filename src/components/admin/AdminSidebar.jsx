@@ -1,11 +1,11 @@
 import React from "react";
 
 function AdminSidebar({ selectedEntity, onSelect }) {
-  const entities = ["Usuarios", "Crow", "Recompensa", "Notificación"];
+  const entities = ["Usuarios", "Crow", "Recompensa"];
 
   return (
     <aside className="admin-sidebar">
-      <h2>Gestión de entidades</h2>
+      <h2>Gestión</h2>
       <ul>
         {entities.map((entity) => (
           <li

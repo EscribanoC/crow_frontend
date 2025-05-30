@@ -2,10 +2,11 @@ import React, { useRef, useState } from "react";
 import { FaCamera, FaTimes } from "react-icons/fa";
 import "../styles/components/ProfileImageUploader.css";
 
-const ProfileImageUploader = () => {
+const ProfileImageUploader = ({ initialImage }) => {
   const [image, setImage] = useState(null);
   const [dragActive, setDragActive] = useState(false);
   const inputRef = useRef(null);
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const handleImageChange = (e) => {
     const file = e.target.files?.[0];
@@ -49,9 +50,13 @@ const ProfileImageUploader = () => {
         onDragLeave={() => setDragActive(false)}
       >
         {image ? (
-          <>
-            <img src={image} alt="Preview" className="preview-img" />
-          </>
+          <img src={image} alt="Preview" className="preview-img" />
+        ) : initialImage ? (
+          <img
+            src={`${API_URL}${initialImage}`}
+            alt="Preview"
+            className="preview-img"
+          />
         ) : (
           <div className="placeholder">
             <FaCamera size={24} className="camera-icon" />
@@ -59,6 +64,7 @@ const ProfileImageUploader = () => {
             <span>Haz clic o arrastra aquí</span>
           </div>
         )}
+
         <input
           type="file"
           accept="image/*"

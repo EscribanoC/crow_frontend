@@ -14,7 +14,10 @@ function AdminHeader() {
   return (
     <header className="admin-header">
       <img src="/images/Logo2.png" alt="Logo" className="admin-logo" />
-      <p className="logo">Crow</p>
+      <div className="logo">
+        Crow <p className="logoSubtitle">admin</p>
+      </div>
+
       <button className="logout-admin-button" onClick={handleLogout}>
         Salir
       </button>
