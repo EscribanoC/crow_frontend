@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import LoginModal from "../components/LoginModal";
 import FeaturedCrows from "../components/FeaturedCrows";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { scrollToElement } from "../js/smooth-scroll";
 
@@ -12,12 +13,14 @@ import InstagramIcon from "../assets/svg/instagram.svg?react";
 import FacebookIcon from "../assets/svg/facebook.svg?react";
 import YoutubeIcon from "../assets/svg/youtube.svg?react";
 import XIcon from "../assets/svg/x.svg?react";
+import Search from "../assets/svg/search.svg?react";
 
 function WelcomePage() {
   const location = useLocation();
   const [showModal, setShowModal] = useState(false);
   const [animateContent, setAnimateContent] = useState(false);
   const [isModalToggling, setIsModalToggling] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleWheel = (event) => {
@@ -55,7 +58,7 @@ function WelcomePage() {
 
   useEffect(() => {
     if (location.state?.openLoginModal) {
-        toggleModal();
+      toggleModal();
     }
   }, [location.state]);
 
@@ -167,14 +170,53 @@ function WelcomePage() {
         id="featured-crows-container-welcome"
         className="welcome-page-content featured-crows-container-welcome"
       >
+        <div className="modal-header">
+          <img
+            src="./images/Logo1.png"
+            alt="Logo"
+            className="logo-welcome-small"
+          />
+        </div>
+        <div className="welcome-page-search-bar">
+          <input
+            type="text"
+            placeholder="Busca por proyectos, creador, categoría ..."
+          ></input>
+          <button onClick={() => navigate("/discover")}>
+            <Search/>
+          </button>
+        </div>
         <FeaturedCrows />
+        <div className="social-media-icons">
+          <a href="https://www.x.com" target="_blank" rel="noopener noreferrer">
+            <XIcon className="social-media-icon" />
+          </a>
+          <a
+            href="https://www.instagram.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <InstagramIcon className="social-media-icon" />
+          </a>
+          <a
+            href="https://www.youtube.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <YoutubeIcon className="social-media-icon" />
+          </a>
+          <a
+            href="https://www.facebook.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FacebookIcon className="social-media-icon" />
+          </a>
+        </div>
       </div>
 
       {showModal && (
-        <LoginModal
-          toggleModal={toggleModal}
-          animateContent={animateContent}
-        />
+        <LoginModal toggleModal={toggleModal} animateContent={animateContent} />
       )}
     </div>
   );

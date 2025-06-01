@@ -1,5 +1,6 @@
 import React from "react";
 import UsuarioTable from "./UsuarioTable";
+import CrowTableAdmin from "./CrowTableAdmin";
 
 function AdminPanel({ selectedEntity }) {
   return (
@@ -8,6 +9,8 @@ function AdminPanel({ selectedEntity }) {
       <div className="admin-panel-content">
         {selectedEntity === "Usuarios" ? (
           <UsuarioTable />
+        ) : selectedEntity === "Crow" ? (
+          <CrowTableAdmin />
         ) : (
           <p>Selecciona una entidad para gestionar.</p>
         )}

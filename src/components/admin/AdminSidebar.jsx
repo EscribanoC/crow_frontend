@@ -1,7 +1,7 @@
 import React from "react";
 
 function AdminSidebar({ selectedEntity, onSelect }) {
-  const entities = ["Usuarios", "Crow", "Recompensa"];
+  const entities = ["Usuarios", "Crow"];
 
   return (
     <aside className="admin-sidebar">

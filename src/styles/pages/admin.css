@@ -65,7 +65,7 @@
 .admin-body {
     display: flex;
     flex: 1;
-    min-width: 80%;
+    width: 80%;
     background-color: white;
 }
 
@@ -251,8 +251,13 @@
     gap: 15px;
 
     .form-input input,
-    .form-input select {
+    .form-input select,
+    .form-input textarea {
         border: 1px solid var(--color-2);
+    }
+
+    .form-input textarea {
+        resize: none;
     }
 }
 
@@ -329,4 +334,20 @@
     background-color: #f0f0f0;
     border-color: #999;
     color: #333;
+}
+
+.description-crow-admin {
+    text-overflow: ellipsis;
+    word-break: break-all;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.td-admin-manage-crows {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }

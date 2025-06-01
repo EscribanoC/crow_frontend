@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import EditUsuarioModal from "./EditUsuarioModal";
+import Swal from "sweetalert2";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -42,14 +43,14 @@ function UsuarioTable() {
 
   const handleSaveUsuario = async (id, formData) => {
     try {
-      const token = localStorage.getItem("token"); // O el lugar donde guardes el JWT
+      const token = localStorage.getItem("token");
 
       const response = await fetch(`${API_URL}usuarios/${id}`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${token}`,
         },
-        body: formData, // está bien dejarlo como FormData si estás enviando archivos
+        body: formData,
       });
 
       if (!response.ok) throw new Error("Error al actualizar usuario");
@@ -61,9 +62,54 @@ function UsuarioTable() {
     }
   };
 
-  const handleDelete = (id) => {
-    console.log("Eliminar usuario", id);
-    // Aquí lanzarías un confirm y harías el DELETE
+  const handleDelete = async (id) => {
+    const usuario = usuarios.find((u) => u.id === id);
+    const confirmString = `BORRAR USUARIO ${usuario.usuario.toUpperCase()}`;
+
+    const { value: inputText } = await Swal.fire({
+      title: "Confirmar eliminación",
+      html: `
+      <p>Escribe <strong>${confirmString}</strong> para confirmar la eliminación del usuario.</p>
+      <input id="confirmInput" class="swal2-input" >
+    `,
+      showCancelButton: true,
+      confirmButtonText: "Eliminar",
+      cancelButtonText: "Cancelar",
+      preConfirm: () => {
+        const input = document.getElementById("confirmInput").value;
+        if (input !== confirmString) {
+          Swal.showValidationMessage("El texto no coincide exactamente.");
+          return false;
+        }
+        return input;
+      },
+    });
+
+    if (inputText === confirmString) {
+      try {
+        const token = localStorage.getItem("token");
+
+        const response = await fetch(`${API_URL}usuarios/${id}`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!response.ok) throw new Error("Error al eliminar usuario");
+
+        await fetchUsuarios(currentPage);
+
+        Swal.fire(
+          "¡Eliminado!",
+          "El usuario ha sido eliminado correctamente.",
+          "success"
+        );
+      } catch (error) {
+        console.error("Error al eliminar usuario:", error);
+        Swal.fire("Error", "No se pudo eliminar el usuario.", "error");
+      }
+    }
   };
 
   return (
